@@ -35,7 +35,7 @@ k("n", "N", "Nzzzv", opts)
 --not overwrite paste
 k("v", "p", '"_dp', opts)
 
-k("n", "<leader>o", ":Format<CR>", opts) -- null-ls format
+-- k("n", "<leader>o", ":Format<CR>", opts) -- null-ls format
 
 k("n", "<leader>i", ":vsp %:r.in<CR><C-r><CR>", opts) -- CP open input file
 k("n", "<leader>j", ":!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>", opts) -- CP run with input file

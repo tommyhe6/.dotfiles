@@ -1,11 +1,11 @@
-return { "hrsh7th/nvim-cmp",
+return { "hrsh7th/nvim-cmp", -- completion engine
     event = "InsertEnter",
     dependencies = {
         "hrsh7th/cmp-buffer", -- buffer completions
         "hrsh7th/cmp-path", -- path completions
         "hrsh7th/cmp-cmdline", -- cmdline completions
         "hrsh7th/cmp-nvim-lsp", -- LSP completion
-        "hrsh7th/cmp-nvim-lua", -- nvim lua completion
+        "hrsh7th/cmp-nvim-lua", -- nvim lua completions
         "saadparwaiz1/cmp_luasnip", -- snippet completions
     },
     config = function()
@@ -49,14 +49,13 @@ return { "hrsh7th/nvim-cmp",
         cmp.setup {
             snippet = {
                 expand = function(args)
-                    luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                    luasnip.lsp_expand(args.body) -- use luasnip
                 end,
             },
             mapping = {
-                ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-                ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-                ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-                ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+                ["<C-b>"] = cmp.mapping.scroll_docs(-1),
+                ["<C-f>"] = cmp.mapping.scroll_docs(1),
+                ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-c>"] = cmp.mapping {
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
@@ -74,10 +73,7 @@ return { "hrsh7th/nvim-cmp",
                     else
                         fallback()
                     end
-                end, {
-                        "i",
-                        "s",
-                    }),
+                end, { "i", "s" }),
                 ["<C-k>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
@@ -86,17 +82,14 @@ return { "hrsh7th/nvim-cmp",
                     else
                         fallback()
                     end
-                end, {
-                        "i",
-                        "s",
-                    }),
+                end, { "i", "s" }),
+                ["<C-u>"] = cmp.mapping.select_prev_item({ count = 5 }),
+                ["<C-d>"] = cmp.mapping.select_next_item({ count = 5 }),
             },
             formatting = {
                 fields = { "abbr", "kind", "menu" },
                 format = function(entry, vim_item)
-                    -- Kind icons
                     vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-                    -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
                     vim_item.menu = ({
                         nvim_lsp = "[LSP]",
                         luasnip = "[Snippet]",
@@ -120,8 +113,7 @@ return { "hrsh7th/nvim-cmp",
                 documentation = cmp.config.window.bordered()
             },
             experimental = {
-                ghost_text = false,
-                native_menu = false,
+                ghost_text = true,
             },
         }
     end,

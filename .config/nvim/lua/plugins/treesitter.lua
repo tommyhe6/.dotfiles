@@ -32,11 +32,13 @@ return {
             }
         end,
     },
-    { "p00f/nvim-ts-rainbow",
+    { "p00f/nvim-ts-rainbow", -- rainbow nested parentheses 
         event = "BufReadPost"
-    }, -- rainbow nested parentheses 
-    { "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    { "JoosepAlviste/nvim-ts-context-commentstring", -- comments in context using treesitter
         event = "BufReadPost"
-    }, -- comments in context using treesitter
-    { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle"}, -- treesitter playground for dev
+    },
+    { "nvim-treesitter/playground", -- treesitter playground for dev
+        cmd = "TSPlaygroundToggle"
+    },
 }

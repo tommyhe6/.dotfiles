@@ -5,26 +5,26 @@ return {
     { "tpope/vim-repeat" }, -- useful for plugins to use .
 
     -- utils
-    { "windwp/nvim-autopairs",
+    { "windwp/nvim-autopairs", -- autopairs 
         event = "InsertEnter",
         config = {
             check_ts = true,
         },
-    }, -- autopairs 
+    },
     { "tpope/vim-commentary" }, -- commenting
     { "kyazdani42/nvim-web-devicons" }, -- icons for tree and lualine
-    { "nvim-lualine/lualine.nvim",
+    { "nvim-lualine/lualine.nvim", -- status line
         event = "BufReadPost",
         config = true,
-    }, -- status line
+    },
 
     --navigation
     { "knubie/vim-kitty-navigator" }, -- nvim kitty integration
-    { "ggandor/leap.nvim",
+    { "ggandor/leap.nvim", -- easier navigation
         config = function()
             require("leap").add_default_mappings()
         end,
-    }, -- easier navigation
+    },
     { "kylechui/nvim-surround", config = true }, -- surround
 
     -- visual
@@ -39,9 +39,9 @@ return {
             colorscheme dracula]])
         end,
     },
-    { "norcalli/nvim-colorizer.lua",
+    { "norcalli/nvim-colorizer.lua", -- color highlighting on color hex
         event = "BufReadPost",
         config = true,
-    }, -- color highlighting on color hex
+    },
     { "lukas-reineke/indent-blankline.nvim" }, -- indent guides
 }
