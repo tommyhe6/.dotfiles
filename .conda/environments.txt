@@ -1,0 +1,2 @@
+/opt/homebrew/Caskroom/miniconda/base
+/opt/homebrew/Caskroom/miniconda/base/envs/ldm
