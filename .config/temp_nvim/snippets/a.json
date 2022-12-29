@@ -1,0 +1,488 @@
+{
+    "Remark": {
+        "body": [
+            "\\begin{Rem}",
+            "\t$1",
+            "\\end{Rem}"
+        ],
+        "prefix": "rem",
+    },
+    "\\sqrt{}": {
+        "body": [
+            "\\sqrt{$1}$0"
+        ],
+        "prefix": "sqrt"
+    },
+    "ang": {
+        "body": [
+            "\\left\\langle $1 \\right\\rangle$0"
+        ],
+        "prefix": "ang"
+    },
+    "Notation": {
+        "body": [
+            "\\begin{Nota}",
+            "\t$1",
+            "\\end{Nota}"
+        ],
+        "prefix": "nota"
+    },
+    "iff": {
+        "body": [
+            "\\iff"
+        ],
+        "prefix": "<=>"
+    },
+    "Assignment Template": {
+        "body": [
+            "\\documentclass[11pt]{article}",
+            "\\usepackage{macros}",
+            "",
+            "\\title{$1}",
+            "\\author{Tommy He}",
+            "\\date{}",
+            "",
+            "\\begin{document}",
+            "\\maketitle",
+            "$0",
+            "\\end{document}",
+            ""
+        ],
+        "prefix": "assi"
+    },
+    "floor": {
+        "body": [
+            "\\left\\lfloor $1 \\right\\rfloor$0"
+        ],
+        "prefix": "floor"
+    },
+    "Align": {
+        "body": [
+            "\\begin{align*}",
+            "\t$1",
+            "\\end{align*}"
+        ],
+        "prefix": "ali"
+    },
+    "Fraction": {
+        "body": [
+            "\\frac{$1}{$2}$0"
+        ],
+        "prefix": "//"
+    },
+    "product": {
+        "body": [
+            "\\prod_{${1:n = 1}}^{${2:\\infty}} ${3:a_n}"
+        ],
+        "prefix": "prod"
+    },
+    "Proposition": {
+        "body": [
+            "\\begin{Prop}",
+            "\t$1",
+            "\\end{Prop}"
+        ],
+        "prefix": "prop"
+    },
+    "sum": {
+        "body": [
+            "\\sum_{${1:n = 1}}^{${2:\\infty}} ${3:a_n x_n}"
+        ],
+        "prefix": "sum"
+    },
+    "Question": {
+        "body": [
+            "\\begin{Que}",
+            "\t$1",
+            "\\end{Que}"
+        ],
+        "prefix": "que"
+    },
+    "\\\\\\\\1 mathbb": {
+        "body": [
+            "\\mathbbm{1}"
+        ],
+        "prefix": "\"\\\\\\\\1\""
+    },
+    "Algorithm": {
+        "body": [
+            "\\begin{Algo}",
+            "\t$1",
+            "\\end{Algo}"
+        ],
+        "prefix": "algo"
+    },
+    "Math": {
+        "body": [
+            "\\($1\\)"
+        ],
+        "prefix": "km"
+        "luasnip": {
+            "priority": 2000,
+            "autotrigger": true
+        }
+    },
+    "Math": {
+        "body": [
+            "\\[$1\\]"
+        ],
+        "prefix": "dm"
+        "luasnip": {
+            "priority": 2000,
+            "autotrigger": true
+        }
+    },
+    "norm": {
+        "body": [
+            "\\left\\lVert $1 \\right\\rVert$0"
+        ],
+        "prefix": "norm"
+    },
+    "supscript": {
+        "body": [
+            "^{$1}$0"
+        ],
+        "prefix": "^^"
+    },
+    "left( right)": {
+        "body": [
+            "\\left( $1 \\right)$0"
+        ],
+        "prefix": "lr("
+    },
+    "bar bar": {
+        "body": [
+            "\\overline{$1}$0"
+        ],
+        "prefix": "\"bar\""
+    },
+    "liminf": {
+        "body": [
+            "\\liminf_{${1:n} \\to ${2:\\infty}} ${3:a_n}"
+        ],
+        "prefix": "linf"
+    },
+    "Conjecture": {
+        "body": [
+            "\\begin{Conj}",
+            "\t$1",
+            "\\end{Conj}"
+        ],
+        "prefix": "conj"
+    },
+    "ceil": {
+        "body": [
+            "\\left\\lceil $1 \\right\\rceil$0"
+        ],
+        "prefix": "ceil"
+    },
+    "Proof": {
+        "body": [
+            "\\begin{proof}",
+            "\t$1",
+            "\\end{proof}"
+        ],
+        "prefix": "pf"
+    },
+    "Introduction": {
+        "body": [
+            "\\begin{Intro}",
+            "\t$1",
+            "\\end{Intro}"
+        ],
+        "prefix": "intro"
+    },
+    "abs": {
+        "body": [
+            "\\left\\lvert $1 \\right\\rvert$0"
+        ],
+        "prefix": "abs"
+    },
+    "bmat": {
+        "body": [
+            "\\begin{bmatrix} $1 \\end{bmatrix}"
+        ],
+        "prefix": "bmat"
+    },
+    "Corollary": {
+        "body": [
+            "\\begin{Cor}",
+            "\t$1",
+            "\\end{Cor}"
+        ],
+        "prefix": "cor"
+    },
+    "Figure environment": {
+        "body": [
+            "\\begin{figure}[${1:htpb}]",
+            "\t\\centering",
+            "\t${2:\\includegraphics[width=0.8\\textwidth]{$3}}",
+            "\t\\caption{${4:$3}}",
+            "\t\\label{fig:${5:${3/\\W+/-/g}}}",
+            "\\end{figure}"
+        ],
+        "prefix": "fig"
+    },
+    "begin{} / end{}": {
+        "body": [
+            "\\begin{$1}",
+            "\t$0",
+            "\\end{$1}"
+        ],
+        "prefix": "beg"
+    },
+    "limit": {
+        "body": [
+            "\\lim_{${1:n} \\to ${2:\\infty}} ${3:a_n}"
+        ],
+        "prefix": "lim"
+    },
+    "Enumerate": {
+        "body": [
+            "\\begin{enumerate}",
+            "\t\\item$0",
+            "\\end{enumerate}"
+        ],
+        "prefix": "enum"
+    },
+    "Problem": {
+        "body": [
+            "\\begin{Prob}",
+            "\t$1",
+            "\\end{Prob}"
+        ],
+        "prefix": "prob"
+    },
+    "tilde tilde": {
+        "body": [
+            "\\tilde{$1}$0"
+        ],
+        "prefix": "\"tilde\""
+    },
+    "subscript": {
+        "body": [
+            "_{$1}$0"
+        ],
+        "prefix": "__"
+    },
+    "such that": {
+        "body": [
+            "\\text{ s.t. }"
+        ],
+        "prefix": "s.t."
+    },
+    "implied by": {
+        "body": [
+            "\\impliedby"
+        ],
+        "prefix": "<="
+    },
+    "implies": {
+        "body": [
+            "\\implies"
+        ],
+        "prefix": "=>"
+    },
+    "hat hat": {
+        "body": [
+            "\\widehat{$1}$0"
+        ],
+        "prefix": "\"hat\""
+    },
+    "limsup": {
+        "body": [
+            "\\limsup_{${1:n} \\to ${2:\\infty}} ${3:a_n}"
+        ],
+        "prefix": "lsup"
+    },
+    "Paper Template": {
+        "body": [
+            "\\documentclass[11pt]{article}",
+            "",
+            "\\usepackage{amsmath, amsfonts, amssymb, amsthm}",
+            "\\usepackage{enumitem, mathtools, tikz, bbm, mathrsfs, tikz-cd}",
+            "\\usepackage{newtxtext, newtxmath}",
+            "\\usepackage{import, pdfpages, transparent, xcolor, cancel, graphicx}",
+            "\\usepackage[margin=1in]{geometry}",
+            "\\usepackage[",
+            "bibstyle=numeric,",
+            "citestyle=numeric,",
+            "hyperref=true,",
+            "backref=false,",
+            "sorting=nyt",
+            "]{biblatex}",
+            "\\usepackage{hyperref}",
+            "\\hypersetup{pdftoolbar=true, pdftitle={GKform}, pdffitwindow=true, colorlinks=true, citecolor=green, filecolor=black, linkcolor=blue, urlcolor=blue, hypertexnames=false}",
+            "\\usepackage{pgfplots}",
+            "\t\\pgfplotsset{",
+            "\t\tcompat=1.12,",
+            "\t}",
+            "\\usepackage{indentfirst}",
+            "\\addbibresource{refs.bib}",
+            "\\usepackage[noend]{algpseudocode}",
+            "\\usepackage{algorithm}",
+            "\\usepackage[section]{placeins}",
+            "\\usepackage{graphicx}",
+            "",
+            "%% MACROS %%",
+            "\\newcommand\\circled[1]{\\tikz[baseline=(char.base)]{\\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}",
+            "",
+            "\\newcommand{\\Input}{\\hspace*{\\algorithmicindent} \\textbf{Input:}}",
+            "\\newcommand{\\Output}{\\hspace*{\\algorithmicindent} \\textbf{Output:}}",
+            "",
+            "\\DeclareMathOperator{\\di}{d\\!}",
+            "\\DeclareMathOperator{\\lcm}{lcm}",
+            "",
+            "%% Alg %%",
+            "\\DeclareMathOperator{\\Ima}{Im}",
+            "\\DeclareMathOperator{\\Ker}{Ker}",
+            "\\DeclareMathOperator{\\Rk}{Rk}",
+            "\\DeclareMathOperator{\\rank}{rank}",
+            "\\DeclareMathOperator{\\nl}{nullity}",
+            "\\DeclareMathOperator{\\Orb}{Orb}",
+            "\\DeclareMathOperator{\\Stab}{Stab}",
+            "\\DeclareMathOperator{\\Cent}{Cent}",
+            "\\DeclareMathOperator{\\GL}{GL}",
+            "\\DeclareMathOperator{\\Mat}{Mat}",
+            "\\DeclareMathOperator{\\SO}{SO}",
+            "\\DeclareMathOperator{\\Tor}{Tor}",
+            "\\DeclareMathOperator{\\Id}{Id}",
+            "",
+            "%% Prob %%",
+            "\\DeclareMathOperator{\\Var}{Var}",
+            "\\DeclareMathOperator{\\MSE}{MSE}",
+            "\\DeclareMathOperator{\\bias}{bias}",
+            "\\newcommand{\\1}{\\mathbbm{1}}",
+            "\\newcommand{\\io}{\\text{ i.o.}}",
+            "\\newcommand{\\as}{\\text{a.s.}}",
+            "\\DeclareMathOperator{\\Unif}{Unif}",
+            "\\DeclareMathOperator{\\Poisson}{Poisson}",
+            "\\DeclareMathOperator{\\Beta}{Beta}",
+            "\\DeclareMathOperator{\\Gam}{Gamma}",
+            "\\DeclareMathOperator{\\Cauchy}{Cauchy}",
+            "\\DeclareMathOperator{\\Exp}{Exp}",
+            "\\DeclareMathOperator{\\Binomial}{Binomial}",
+            "",
+            "%% Cypto %%",
+            "\\DeclareMathOperator{\\Gen}{Gen}",
+            "\\DeclareMathOperator{\\Enc}{Enc}",
+            "\\DeclareMathOperator{\\Dec}{Dec}",
+            "\\DeclareMathOperator{\\PrivK}{PrivK}",
+            "\\DeclareMathOperator{\\PubK}{PubK}",
+            "\\DeclareMathOperator{\\negl}{negl}",
+            "\\DeclareMathOperator{\\Mac}{Mac}",
+            "\\DeclareMathOperator{\\Vrfy}{Vrfy}",
+            "\\DeclareMathOperator{\\Sign}{Sign}",
+            "\\DeclareMathOperator{\\enc}{enc}",
+            "",
+            "%% ML %%",
+            "\\DeclareMathOperator{\\FV}{FV}",
+            "\\DeclareMathOperator{\\VCdim}{VCdim}",
+            "\\DeclareMathOperator{\\sgn}{sgn}",
+            "",
+            "%% Math Writing %%",
+            "\\newtheorem{Thm}{Theorem}[section]",
+            "\\newtheorem{Prop}[Thm]{Proposition}",
+            "\\newtheorem{Cor}[Thm]{Corollary}",
+            "\\newtheorem{Lem}[Thm]{Lemma}",
+            "\\newtheorem{Que}[Thm]{Question}",
+            "\\newtheorem{Conj}[Thm]{Conjecture}",
+            "\\newtheorem{Algo}[Thm]{Algorithm}",
+            "",
+            "\\theoremstyle{definition}",
+            "\\newtheorem{Def}[Thm]{Definition}",
+            "\\newtheorem{Notation}[Thm]{Notation}",
+            "\\newtheorem{Ex}[Thm]{Example}",
+            "\\newtheorem{Intro}[Thm]{Introduction}",
+            "\\newtheorem{Prob}[Thm]{Problem}",
+            "",
+            "\\theoremstyle{remark}",
+            "\\newtheorem{Rem}[Thm]{Remark}",
+            "",
+            "%% Figures %%",
+            "",
+            "\\newcommand{\\incfig}[2][1]{%",
+            "\t\\def\\svgwidth{#1\\columnwidth}",
+            "\t\\import{./figures/}{#2.pdf_tex}",
+            "}",
+            "",
+            "",
+            "\\pdfsuppresswarningpagegroup=1",
+            "",
+            "%% MACROS %%",
+            "",
+            "",
+            "\\title{$1}",
+            "\\author{Tommy He}",
+            "\\date{}",
+            "",
+            "\\begin{document}",
+            "\\maketitle",
+            "$0",
+            "",
+            "\\newpage",
+            "\\printbibliography",
+            "\\end{document}",
+            ""
+        ],
+        "prefix": "paper"
+    },
+    "Example": {
+        "body": [
+            "\\begin{Ex}",
+            "\t$1",
+            "\\end{Ex}"
+        ],
+        "prefix": "ex"
+    },
+    "left[ right]": {
+        "body": [
+            "\\left[ $1 \\right]$0"
+        ],
+        "prefix": "lr["
+    },
+    "Itemize": {
+        "body": [
+            "\\begin{itemize}",
+            "\t\\item$0",
+            "\\end{itemize}"
+        ],
+        "prefix": "item"
+    },
+    "pmat": {
+        "body": [
+            "\\begin{pmatrix} $1 \\end{pmatrix}"
+        ],
+        "prefix": "pmat"
+    },
+    "Lemma": {
+        "body": [
+            "\\begin{Lem}",
+            "\t$1",
+            "\\end{Lem}"
+        ],
+        "prefix": "lem"
+    },
+    "Definition": {
+        "body": [
+            "\\begin{Def}",
+            "\t$1",
+            "\\end{Def}"
+        ],
+        "prefix": "def"
+    },
+    "left\\{ right\\}": {
+        "body": [
+            "\\left\\{ $1 \\right\\}$0"
+        ],
+        "prefix": "lr{"
+    },
+    "Theorem": {
+        "body": [
+            "\\begin{Thm}",
+            "\t$1",
+            "\\end{Thm}"
+        ],
+        "prefix": "thm"
+    }
+}
