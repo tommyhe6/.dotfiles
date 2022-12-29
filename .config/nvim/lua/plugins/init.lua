@@ -15,7 +15,11 @@ return {
     { "kyazdani42/nvim-web-devicons" }, -- icons for tree and lualine
     { "nvim-lualine/lualine.nvim", -- status line
         event = "BufReadPost",
-        config = true,
+        config = {
+            options = {
+                theme = "dracula-nvim",
+            }
+        },
     },
 
     --navigation
@@ -28,17 +32,6 @@ return {
     { "kylechui/nvim-surround", config = true }, -- surround
 
     -- visual
-    { "dracula/vim", -- dracula colorscheme
-        -- TODO: MAKE HIGHLIGHT AND COMMENTS EASIER TO SEE
-        config = function() -- transparent background
-            vim.cmd([[
-            augroup user_colors
-            autocmd!
-            autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-            augroup END 
-            colorscheme dracula]])
-        end,
-    },
     { "norcalli/nvim-colorizer.lua", -- color highlighting on color hex
         event = "BufReadPost",
         config = true,
