@@ -8,6 +8,7 @@ return { "Mofiqul/dracula.nvim", -- dracula colorscheme
             colors = {
                 visual = "#6D6477",
                 comment = "#919CBF",
+                fg = "#f0fff0",
             }
         }
         vim.cmd([[
