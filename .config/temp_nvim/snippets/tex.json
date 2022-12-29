@@ -1,0 +1,6 @@
+{
+    "Assignment Template": {
+        "body": "\\documentclass[11pt]{article}\\\\usepackage{macros}\\\\title{$1}\\\\author{Tommy He}\\\\date{}\\\\\\begin{document}\\\\maketitle\\$0\\\\end{document}"
+        "prefix": "assi"
+    },
+}
