@@ -1,6 +1,10 @@
 return {
     "lervag/vimtex", -- latex
-    config = function() 
+    config = function()
+        vim.cmd[[
+            filetype plugin on
+            syntax enable
+        ]]
         vim.g.vimtex_compiler_latexmk = {
             build_dir = "",
             callback = 1,

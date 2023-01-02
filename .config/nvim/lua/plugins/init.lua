@@ -5,12 +5,6 @@ return {
     { "tpope/vim-repeat" }, -- useful for plugins to use .
 
     -- utils
-    { "windwp/nvim-autopairs", -- autopairs 
-        event = "InsertEnter",
-        config = {
-            check_ts = true,
-        },
-    },
     { "tpope/vim-commentary" }, -- commenting
     { "kyazdani42/nvim-web-devicons" }, -- icons for tree and lualine
     { "nvim-lualine/lualine.nvim", -- status line
@@ -36,5 +30,4 @@ return {
         event = "BufReadPost",
         config = true,
     },
-    { "lukas-reineke/indent-blankline.nvim" }, -- indent guides
 }
