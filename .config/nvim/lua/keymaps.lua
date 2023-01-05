@@ -1,4 +1,4 @@
-local k = vim.api.nvim_set_keymap
+local k = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- window navigation
@@ -23,21 +23,16 @@ k("n", "<C-u>", "<C-u>zz", opts)
 k("n", "n", "nzzzv", opts)
 k("n", "N", "Nzzzv", opts)
 
--- command completion navigation
+-- command completion navigation TODO: WHY DOESN"T WORK?
 -- local opts_command = { noremap = true, silent = true, expr = true}
--- k('i', '<c-j>', 'pumvisible() ? "\\<c-n>" : "\\<c-j>"' , { noremap = true, expr=true })
--- k('i', '<c-k>', 'pumvisible() ? "\\<c-p>" : "\\<c-j>"' , { noremap = true, expr=true })
--- k("i", "<C-j>", "pumvisible() ? '\\<C-N>' : '\\<C-j>'", opts)
--- k("i", "<C-k>", "pumvisible() ? '\\<C-P>' : '\\<C-k>'", opts)
+-- k("i", "<C-j>", "pumvisible() ? '\\<C-n>' : '\\<C-j>'", opts_command)
+-- k("i", "<C-k>", "pumvisible() ? '\\<C-p>' : '\\<C-k>'", opts_command)
 -- vim.cmd[[inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("<C-j>"))]]
 -- vim.cmd[[inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("<C-k>"))]]
 
 --not overwrite paste
 k("v", "p", '"_dp', opts)
 
--- k("n", "<leader>o", ":Format<CR>", opts) -- null-ls format
-
+-- CP
 k("n", "<leader>i", ":vsp %:r.in<CR><C-r><CR>", opts) -- CP open input file
 k("n", "<leader>j", ":!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>", opts) -- CP run with input file
-
-
