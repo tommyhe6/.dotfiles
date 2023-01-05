@@ -17,7 +17,10 @@ return { "jose-elias-alvarez/null-ls.nvim", -- formatters and linters
                 -- haskell
                 formatting.fourmolu,
                 -- rust
-                formatting.rustfmt
+                formatting.rustfmt,
+                -- go
+                formatting.gofmt,
+                diagnostics.golangci_lint,
             }
         }
     end

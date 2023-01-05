@@ -49,7 +49,6 @@ return {
                 end
             })
 
-
             local signs = {
                 { name = "DiagnosticSignError", text = "" },
                 { name = "DiagnosticSignWarn", text = "" },
@@ -62,9 +61,7 @@ return {
             end
 
             vim.diagnostic.config {
-                -- disable virtual text
                 virtual_text = false,
-                -- show signs
                 signs = {
                     active = signs,
                 },
@@ -81,11 +78,11 @@ return {
                 },
             }
 
-            -- TODO: ENHANCE
             lspconfig.sumneko_lua.setup({})
             lspconfig.rust_analyzer.setup({})
             lspconfig.pyright.setup({})
             lspconfig.texlab.setup({})
+            lspconfig.gopls.setup({})
         end
     },
 }
