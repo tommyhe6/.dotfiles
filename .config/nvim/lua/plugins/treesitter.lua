@@ -15,8 +15,7 @@ return {
 					enable = false,
 				},
 				indent = {
-					enable = true,
-					disable = { "" },
+					enable = false,
 				},
 				rainbow = {
 					enable = true,
