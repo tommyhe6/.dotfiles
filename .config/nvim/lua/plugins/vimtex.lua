@@ -35,9 +35,12 @@ return {
             augroup END
         ]])
 
+        vim.g.vimtex_syntax_enable = 0
+        vim.g.vimtex_syntax_conceal_disable = 1
+
 		-- tex conceal
 		-- TODO: CONCEAL DOES NOT WORK WITH TREESITTER, DEFAULT COLORS LOOK WEIRD
-		vim.opt.conceallevel = 0
+		-- vim.opt.conceallevel = 0
 		-- vim.g.vimtex_syntax_conceal = {
 		--     accents = 1,
 		--     ligatures = 1,

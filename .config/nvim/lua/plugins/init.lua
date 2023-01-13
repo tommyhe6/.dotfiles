@@ -22,7 +22,9 @@ return {
 	{
 		"ggandor/leap.nvim", -- easier navigation
 		config = function()
-			require("leap").add_default_mappings()
+            local leap = require("leap")
+            leap.add_default_mappings()
+            leap.opts.case_sensitive = true
 		end,
 	},
 	{ "kylechui/nvim-surround", config = true }, -- surround
