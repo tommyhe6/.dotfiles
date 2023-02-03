@@ -7,6 +7,8 @@ k("i", "<C-j>", "<CMD>KittyNavigateDown<CR>", opts)
 k("i", "<C-k>", "<CMD>KittyNavigateUp<CR>", opts)
 k("i", "<C-l>", "<CMD>KittyNavigateRight<CR>", opts)
 
+k("n", "<C-r>", "<C-w>r", opts)
+
 --resize
 k("n", "<C-Up>", "<CMD>resize +2<CR>", opts)
 k("n", "<C-Down>", "<CMD>resize -2<CR>", opts)
@@ -34,5 +36,5 @@ k("n", "N", "Nzzzv", opts)
 k("v", "p", '"_dp', opts)
 
 -- CP
-k("n", "<leader>i", "<CMD>vsp %:r.in<CR><C-w>r<CR>", opts) -- CP open input file
-k("n", "<leader>j", "<CMD>!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>", opts) -- CP run with input file
+k("n", "<leader>i", ":vsp %:r.in<CR><C-w>r<CR>", opts) -- CP open input file
+k("n", "<leader>j", ":!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>", opts) -- CP run with input file

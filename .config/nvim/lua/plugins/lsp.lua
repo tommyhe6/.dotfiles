@@ -28,13 +28,8 @@ return {
 					vim.keymap.set("n", "gy", "<CMD>lua vim.lsp.buf.type_definition()<CR>")
 					-- Lists all the references
 					vim.keymap.set("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
-					-- Displays a function's signature information
-					vim.keymap.set("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>")
 					-- Renames all references to the symbol under the cursor
-					vim.keymap.set("n", "<F2>", "<CMD>lua vim.lsp.buf.rename()<CR>")
-					-- Selects a code action available at the current cursor position
-					vim.keymap.set("n", "<F4>", "<CMD>lua vim.lsp.buf.code_action()<CR>")
-					vim.keymap.set("x", "<F4>", "<CMD>lua vim.lsp.buf.range_code_action()<CR>")
+					vim.keymap.set("n", "ch", "<CMD>lua vim.lsp.buf.rename()<CR>")
 					-- Show diagnostics in a floating window
 					vim.keymap.set("n", "gl", "<CMD>lua vim.diagnostic.open_float()<CR>")
 					-- Move to the previous diagnostic
@@ -78,6 +73,8 @@ return {
 			lspconfig.pyright.setup({})
 			lspconfig.texlab.setup({})
 			lspconfig.gopls.setup({})
+			lspconfig.tsserver.setup({})
+			lspconfig.clangd.setup({})
 		end,
 	},
 }

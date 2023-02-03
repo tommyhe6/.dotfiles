@@ -16,6 +16,7 @@ return {
 			},
 		},
 	},
+    { "mbbill/undotree" }, -- undotree
 
 	--navigation
 	{ "knubie/vim-kitty-navigator" }, -- nvim kitty integration

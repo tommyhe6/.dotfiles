@@ -16,6 +16,7 @@ return {
             npairs.add_rules({
                 Rule("\\(", "\\)", "tex"),
                 Rule("\\[", "\\]", "tex"),
+                Rule("\\{", "\\}", "tex"),
             })
 
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -32,6 +33,16 @@ return {
         config = {
             tabkey = "<C-j>",
             backwards_tabkey = "<C-k>",
+            tabouts = {
+                { open = "'", close = "'" },
+                { open = '"', close = '"' },
+                { open = "`", close = "`" },
+                { open = "(", close = ")" },
+                { open = "[", close = "]" },
+                { open = "{", close = "}" },
+                { open = "\\(", close = "\\)" },
+                { open = "\\[", close = "\\]" },
+            },
         },
     },
 }

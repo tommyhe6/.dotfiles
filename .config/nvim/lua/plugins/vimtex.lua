@@ -1,10 +1,6 @@
 return {
 	"lervag/vimtex", -- latex
 	config = function()
-		-- vim.cmd[[
-		--     filetype plugin on
-		--     syntax enable
-		-- ]]
 		vim.g.vimtex_compiler_latexmk = {
 			build_dir = "",
 			callback = 1,
@@ -18,7 +14,7 @@ return {
 			},
 		}
 		vim.g.vimtex_compiler_progname = "nvr"
-		vim.g.vimtex_view_method = "skim"
+		vim.g.vimtex_view_method = "zathura"
 		vim.g.vimtex_quickfix_mode = 0
 		vim.g.vimtex_view_automatic = 1
 
@@ -35,25 +31,25 @@ return {
             augroup END
         ]])
 
-        vim.g.vimtex_syntax_enable = 0
-        vim.g.vimtex_syntax_conceal_disable = 1
+        vim.g.vimtex_syntax_enable = 1
+        -- vim.g.vimtex_syntax_conceal_disable = 0
 
 		-- tex conceal
 		-- TODO: CONCEAL DOES NOT WORK WITH TREESITTER, DEFAULT COLORS LOOK WEIRD
-		-- vim.opt.conceallevel = 0
-		-- vim.g.vimtex_syntax_conceal = {
-		--     accents = 1,
-		--     ligatures = 1,
-		--     cites = 1,
-		--     fancy = 1,
-		--     greek = 1,
-		--     math_bounds = 1,
-		--     math_delimiters = 1,
-		--     math_fracs = 1,
-		--     math_super_sub = 1,
-		--     math_symbols = 1,
-		--     sections = 1,
-		--     styles = 1
-		-- }
+		vim.opt.conceallevel = 2
+		vim.g.vimtex_syntax_conceal = {
+		    accents = 1,
+		    ligatures = 1,
+		    cites = 1,
+		    fancy = 1,
+		    greek = 1,
+		    math_bounds = 1,
+		    math_delimiters = 1,
+		    math_fracs = 1,
+		    math_super_sub = 1,
+		    math_symbols = 1,
+		    sections = 1,
+		    styles = 1
+		}
 	end,
 }

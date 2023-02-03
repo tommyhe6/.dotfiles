@@ -9,7 +9,7 @@ return {
 				ignore_install = { "phpdoc", "php" }, -- List of parsers to ignore installing
 				highlight = {
 					enable = true,
-					-- disable = { "latex" },
+					disable = { "latex" },
 				},
 				autopairs = {
 					enable = false,
