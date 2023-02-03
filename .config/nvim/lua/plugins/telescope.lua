@@ -4,7 +4,7 @@ return {
 	keys = {
 		{ -- file search
 			"<leader>f",
-			"<CMD>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<CR>",
+			"<CMD>Telescope find_files<CR>",
 			mode = "n",
 			opts.unpack,
 		},

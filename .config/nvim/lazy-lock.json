@@ -6,6 +6,7 @@
   "cmp-nvim-lua": { "branch": "main", "commit": "d276254e7198ab7d00f117e88e223b4bd8c02d21" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
+  "copilot.vim": { "branch": "release", "commit": "c7d166ebda265370f38cec374e33f02eeec2f857" },
   "dracula.nvim": { "branch": "main", "commit": "9195c478cf05c3369131a7a9c606cbbc5247b0c6" },
   "friendly-snippets": { "branch": "main", "commit": "1a6a02350568d6830bcfa167c72f9b6e75e454ae" },
   "lazy.nvim": { "branch": "main", "commit": "370b1b982e95c004512604eb87f0facd03340095" },

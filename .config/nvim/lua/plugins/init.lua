@@ -36,4 +36,9 @@ return {
 		event = "BufReadPost",
 		config = true,
 	},
+
+    -- copilot
+    {
+        "github/copilot.vim",
+    }
 }
