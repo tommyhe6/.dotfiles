@@ -31,11 +31,11 @@ return {
 	{ "kylechui/nvim-surround", config = true }, -- surround
 
 	-- visual
-	{
-		"norcalli/nvim-colorizer.lua", -- color highlighting on color hex
-		event = "BufReadPost",
-		config = true,
-	},
+	-- {
+	-- 	"norcalli/nvim-colorizer.lua", -- color highlighting on color hex
+	-- 	event = "BufReadPost",
+	-- 	config = true,
+	-- },
 
     -- copilot
     {

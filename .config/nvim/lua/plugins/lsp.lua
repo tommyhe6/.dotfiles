@@ -75,6 +75,7 @@ return {
 			lspconfig.gopls.setup({})
 			lspconfig.tsserver.setup({})
 			lspconfig.clangd.setup({})
+            lspconfig.wgsl_analyzer.setup({})
 		end,
 	},
 }

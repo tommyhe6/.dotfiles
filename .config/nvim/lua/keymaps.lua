@@ -33,6 +33,12 @@ k("n", "N", "Nzzzv", opts)
 --not overwrite paste
 k("v", "p", '"_dp', opts)
 
+-- stop ctrl c from entering normal mode
+k("i", "<C-c>", "<NOP>", opts)
+
+-- null ls format 
+k("n", "go", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 2000 })<CR>", opts)
+
 -- CP
 k("n", "<leader>i", "<CMD>vsp %:r.in<CR><C-w>r<CR>", opts) -- CP open input file
 k("n", "<leader>j", "<CMD>!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>", opts) -- CP run with input file

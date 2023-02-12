@@ -4,9 +4,7 @@ return {
 		local null_ls = require("null-ls")
 		local formatting = null_ls.builtins.formatting
 		local diagnostics = null_ls.builtins.diagnostics
-		local opts = { buffer = true, noremap = true, silent = true }
 		-- format keymap
-		vim.keymap.set("n", "go", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 2000 })<CR>", opts)
 		null_ls.setup({
 			sources = {
 				-- js/ts/related

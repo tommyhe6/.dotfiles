@@ -11,7 +11,7 @@ o.ignorecase = false
 o.mouse = "a" -- allow the mouse to be used in neovim
 o.pumheight = 10 -- pop up menu height
 o.showtabline = 2 -- always show tabs
-o.smartcase = true -- smart case
+o.smartcase = true
 o.autoindent = true
 o.smartindent = true -- make indenting smarter again
 o.swapfile = false
@@ -29,8 +29,8 @@ o.relativenumber = true -- set relative numbered lines
 o.numberwidth = 4 -- set number column width to 2 {default 4}
 o.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
 o.wrap = true -- display lines as one long line
-o.scrolloff = 5
-o.sidescrolloff = 5
+o.scrolloff = 3
+o.sidescrolloff = 3
 o.guifont = "MesloLGM Nerd Font" -- the font used in graphical neovim applications
 
 o.shortmess:append("c")
