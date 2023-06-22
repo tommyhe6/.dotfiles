@@ -74,6 +74,12 @@ return {
         { condition = math }
     ),
     s(
+        { trig = "txt" },
+        fmta("\\text{ <> }", {
+            i(1),
+        })
+    ),
+    s(
         { trig = "pmat", snippetType = "autosnippet" },
         fmta(
             [[
@@ -348,7 +354,7 @@ return {
             }
         )
     ),
-    s({ trig = "it" }, t{ "\\item " }),
+    s({ trig = "it" }, t({ "\\item " })),
     s(
         { trig = "cd" },
         fmta(
@@ -369,6 +375,19 @@ return {
             \begin{tikz}
                 <>
             \end{tikz}
+            ]],
+            {
+                i(1),
+            }
+        )
+    ),
+    s(
+        { trig = "frm" },
+        fmta(
+            [[
+            \begin{frame}
+                <>
+            \end{frame}
             ]],
             {
                 i(1),

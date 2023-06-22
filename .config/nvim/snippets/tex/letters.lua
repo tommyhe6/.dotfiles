@@ -63,6 +63,15 @@ return {
         { condition = math }
 	),
 	s(
+		{ trig = "(.)fk", regTrig = true, wordTrig = true, snippetType = "autosnippet" },
+		fmta("\\mathfrak{<>}", {
+			f(function(_, snip)
+				return snip.captures[1]
+			end),
+		}),
+        { condition = math }
+	),
+	s(
 		{ trig = "(.)bbm", regTrig = true, wordTrig = true, snippetType = "autosnippet" },
 		fmta("\\mathbbm{<>}", {
 			f(function(_, snip)
@@ -95,7 +104,7 @@ return {
 	s({ trig = ";z", snippetType = "autosnippet" }, {
 		t("\\zeta"),
 	}, { condition = math }),
-	s({ trig = ";e", snippetType = "autosnippet" }, {
+	s({ trig = ";y", snippetType = "autosnippet" }, {
 		t("\\eta"),
 	}, { condition = math }),
 	s({ trig = ";t", snippetType = "autosnippet" }, {
@@ -168,6 +177,6 @@ return {
 		t("\\omega"),
 	}, { condition = math }),
 	s({ trig = ";O", snippetType = "autosnippet" }, {
-		t("\\Ometa"),
+		t("\\Omega"),
 	}, { condition = math }),
 }

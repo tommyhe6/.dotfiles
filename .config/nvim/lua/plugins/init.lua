@@ -16,29 +16,25 @@ return {
 			},
 		},
 	},
-    { "mbbill/undotree" }, -- undotree
+	{ "mbbill/undotree" }, -- undotree
 
 	--navigation
 	{ "knubie/vim-kitty-navigator" }, -- nvim kitty integration
 	{
 		"ggandor/leap.nvim", -- easier navigation
 		config = function()
-            local leap = require("leap")
-            leap.add_default_mappings()
-            leap.opts.case_sensitive = true
+			local leap = require("leap")
+			leap.add_default_mappings()
+			leap.opts.case_sensitive = true
 		end,
 	},
 	{ "kylechui/nvim-surround", config = true }, -- surround
-
-	-- visual
-	-- {
-	-- 	"norcalli/nvim-colorizer.lua", -- color highlighting on color hex
-	-- 	event = "BufReadPost",
-	-- 	config = true,
-	-- },
-
-    -- copilot
-    {
-        "github/copilot.vim",
-    }
+	-- copilot
+	{
+		"github/copilot.vim",
+	},
+	-- jupyter integration
+	{
+		"untitled-ai/jupyter_ascending.vim",
+	},
 }

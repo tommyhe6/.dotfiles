@@ -12,7 +12,7 @@ return {
 				diagnostics.eslint_d,
 				-- py
 				formatting.black.with({ extra_args = { "--fast" } }),
-				diagnostics.flake8,
+				diagnostics.flake8.with({ extra_args = { "--ignore=E501" }}),
 				-- lua
 				formatting.stylua,
 				diagnostics.selene,
@@ -22,7 +22,11 @@ return {
 				formatting.rustfmt,
 				-- go
 				formatting.gofmt,
-				diagnostics.golangci_lint,
+				-- diagnostics.golangci_lint,
+                -- tex
+                formatting.latexindent,
+                -- c/c++
+                formatting.clang_format,
 			},
 		})
 	end,

@@ -47,7 +47,7 @@ return {
             const int N = (int) 1e5 + 5;
 
 
-            void solve() {
+            inline void solve() {
                 <>
             }
 
@@ -56,7 +56,8 @@ return {
                 cin.tie(nullptr);
                 cout.tie(nullptr);
                 int t; cin >>>> t;
-                while(t-- >> 0) solve();
+                while(t-- >> 0)
+                    solve();
             }
             ]],
 			{

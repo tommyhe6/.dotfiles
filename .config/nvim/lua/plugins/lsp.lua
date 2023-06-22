@@ -68,7 +68,7 @@ return {
 				},
 			})
 
-			lspconfig.sumneko_lua.setup({})
+			lspconfig.lua_ls.setup({})
 			lspconfig.rust_analyzer.setup({})
 			lspconfig.pyright.setup({})
 			lspconfig.texlab.setup({})
@@ -76,6 +76,7 @@ return {
 			lspconfig.tsserver.setup({})
 			lspconfig.clangd.setup({})
             lspconfig.wgsl_analyzer.setup({})
+            lspconfig.tflint.setup({})
 		end,
 	},
 }

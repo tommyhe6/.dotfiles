@@ -52,4 +52,30 @@ return {
             }
         )
     ),
+    s(
+        { trig = "presentation" },
+        fmta(
+            [[
+            \documentclass[mathserif]{beamer}
+            \setbeamertemplate{navigation symbols}{}
+            \usepackage{macros}
+            \usetheme{Boadilla}
+            \usepackage{subcaption}
+
+            \usecolortheme{seagull}
+            \title{<>}
+            \author{Tommy He}
+            \date{}
+
+            \begin{document}
+            \maketitle
+            <>
+            \end{document}
+            ]],
+            {
+                i(1),
+                i(0),
+            }
+        )
+    ),
 }

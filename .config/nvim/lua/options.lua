@@ -38,3 +38,8 @@ o.shortmess:append("c")
 vim.cmd([[ set title ]])
 vim.cmd([[ let &t_ut='' ]])
 
+vim.filetype.add {
+    extension = {
+        wgsl = "wgsl",
+    }
+}

@@ -123,7 +123,7 @@ return {
         })
     ),
     s(
-        { trig = "img" },
+        { trig = "graphics" },
         fmta("\\includegraphics[scale=0.5]{<>}", {
             i(1, "/imgs/"),
         })
