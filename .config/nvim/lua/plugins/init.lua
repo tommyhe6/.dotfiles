@@ -29,12 +29,16 @@ return {
 		end,
 	},
 	{ "kylechui/nvim-surround", config = true }, -- surround
-	-- copilot
+	{ "github/copilot.vim" }, -- copilot
+	{ "untitled-ai/jupyter_ascending.vim" }, -- jupyter integration
+
+	-- fzf
 	{
-		"github/copilot.vim",
-	},
-	-- jupyter integration
-	{
-		"untitled-ai/jupyter_ascending.vim",
+		"ibhagwan/fzf-lua",
+		config = function()
+			require("fzf-lua").setup({
+				fzf_opts = { ["--border"] = false },
+			})
+		end,
 	},
 }

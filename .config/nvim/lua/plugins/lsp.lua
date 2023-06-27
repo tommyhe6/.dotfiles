@@ -1,11 +1,7 @@
 return {
-	{ "williamboman/mason.nvim", config = true }, -- installer for LSP and null-ls
-	{ "williamboman/mason-lspconfig.nvim" }, -- installer for LSP and null-ls
 	{
 		"neovim/nvim-lspconfig", -- enable lsp
 		config = function()
-			require("mason").setup()
-			require("mason-lspconfig").setup()
 			local lspconfig = require("lspconfig")
 			local lsp_defaults = lspconfig.util.default_config
 
@@ -69,14 +65,12 @@ return {
 			})
 
 			lspconfig.lua_ls.setup({})
-			lspconfig.rust_analyzer.setup({})
+			-- lspconfig.rust_analyzer.setup({})
 			lspconfig.pyright.setup({})
-			lspconfig.texlab.setup({})
 			lspconfig.gopls.setup({})
 			lspconfig.tsserver.setup({})
 			lspconfig.clangd.setup({})
-            lspconfig.wgsl_analyzer.setup({})
-            lspconfig.tflint.setup({})
+            -- lspconfig.wgsl_analyzer.setup({})
 		end,
 	},
 }
