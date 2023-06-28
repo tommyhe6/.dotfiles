@@ -19,7 +19,8 @@ return {
 	{ "mbbill/undotree" }, -- undotree
 
 	--navigation
-	{ "knubie/vim-kitty-navigator" }, -- nvim kitty integration
+	-- { "knubie/vim-kitty-navigator" }, -- nvim kitty integration
+    { "christoomey/vim-tmux-navigator" }, -- nvim tmux integration
 	{
 		"ggandor/leap.nvim", -- easier navigation
 		config = function()

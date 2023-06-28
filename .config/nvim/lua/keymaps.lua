@@ -36,6 +36,9 @@ k("v", "p", '"_dp', opts)
 -- stop ctrl c from entering normal mode
 k("i", "<C-c>", "<NOP>", opts)
 
+-- noh
+k("n", "gh", "<CMD>noh<CR>", opts)
+
 -- null ls format 
 k("n", "go", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 2000 })<CR>", opts)
 
