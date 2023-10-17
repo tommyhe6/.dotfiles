@@ -32,6 +32,8 @@ return {
 					vim.keymap.set("n", "g[", "<CMD>lua vim.diagnostic.goto_prev()<CR>")
 					-- Move to the next diagnostic
 					vim.keymap.set("n", "g]", "<CMD>lua vim.diagnostic.goto_next()<CR>")
+                    -- Show code actions
+                    vim.keymap.set("n", "gk", "<CMD>lua vim.lsp.buf.code_action()<CR>")
 				end,
 			})
 
@@ -65,12 +67,18 @@ return {
 			})
 
 			lspconfig.lua_ls.setup({})
-			-- lspconfig.rust_analyzer.setup({})
+			lspconfig.rust_analyzer.setup({})
 			lspconfig.pyright.setup({})
 			lspconfig.gopls.setup({})
 			lspconfig.tsserver.setup({})
-			lspconfig.clangd.setup({})
-            -- lspconfig.wgsl_analyzer.setup({})
+			lspconfig.clangd.setup({
+				cmd = {
+                    "clangd",
+					"--offset-encoding=utf-16",
+                    "--clang-tidy",
+				},
+			})
+			-- lspconfig.wgsl_analyzer.setup({})
 		end,
 	},
 }

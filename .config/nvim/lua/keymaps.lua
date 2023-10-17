@@ -2,10 +2,10 @@ local k = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- window navigation
-k("i", "<C-h>", "<CMD>KittyNavigateLeft<CR>", opts)
-k("i", "<C-j>", "<CMD>KittyNavigateDown<CR>", opts)
-k("i", "<C-k>", "<CMD>KittyNavigateUp<CR>", opts)
-k("i", "<C-l>", "<CMD>KittyNavigateRight<CR>", opts)
+k("n", "<C-h>", "<C-w>h", opts)
+k("n", "<C-j>", "<C-w>j", opts)
+k("n", "<C-k>", "<C-w>k", opts)
+k("n", "<C-l>", "<C-w>l", opts)
 
 --resize
 k("n", "<C-Up>", "<CMD>resize +2<CR>", opts)

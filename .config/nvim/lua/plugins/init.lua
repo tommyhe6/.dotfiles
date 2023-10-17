@@ -6,7 +6,7 @@ return {
 
 	-- utils
 	{ "tpope/vim-commentary" }, -- commenting
-	{ "kyazdani42/nvim-web-devicons" }, -- icons for tree and lualine
+	{ "nvim-tree/nvim-web-devicons" }, -- icons for tree and lualine
 	{
 		"nvim-lualine/lualine.nvim", -- status line
 		event = "BufReadPost",
@@ -19,8 +19,6 @@ return {
 	{ "mbbill/undotree" }, -- undotree
 
 	--navigation
-	-- { "knubie/vim-kitty-navigator" }, -- nvim kitty integration
-    { "christoomey/vim-tmux-navigator" }, -- nvim tmux integration
 	{
 		"ggandor/leap.nvim", -- easier navigation
 		config = function()
@@ -29,7 +27,10 @@ return {
 			leap.opts.case_sensitive = true
 		end,
 	},
-	{ "kylechui/nvim-surround", config = true }, -- surround
+	{
+		"kylechui/nvim-surround", -- surround
+		config = true,
+	},
 	{ "github/copilot.vim" }, -- copilot
 	{ "untitled-ai/jupyter_ascending.vim" }, -- jupyter integration
 
@@ -41,5 +42,19 @@ return {
 				fzf_opts = { ["--border"] = false },
 			})
 		end,
+	},
+
+	-- git integration
+	{
+		"NeogitOrg/neogit",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = true,
+	},
+
+	-- just
+	{
+		"NoahTheDuke/vim-just",
+		event = { "BufReadPre", "BufNewFile" },
+		ft = { "\\cjustfile", "*.just", ".justfile" },
 	},
 }

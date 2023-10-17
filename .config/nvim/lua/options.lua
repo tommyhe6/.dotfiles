@@ -1,7 +1,6 @@
 -- :help options
 local o = vim.opt
 o.backup = false
-o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 o.cmdheight = 1
 o.completeopt = { "menuone", "noselect" } -- for cmp
 o.conceallevel = 2 -- conceal for json/md/tex files
@@ -43,3 +42,29 @@ vim.filetype.add {
         wgsl = "wgsl",
     }
 }
+
+-- -- Define a function to generate the custom tabline
+-- function custom_tabline()
+--     local tabline = ""
+--     for i = 1, vim.fn.tabpagenr('$') do
+--         local buflist = vim.fn.tabpagebuflist(i)
+--         local winnr = vim.fn.tabpagewinnr(i)
+--         local bufnr = buflist[winnr]
+--         local bufname = vim.fn.bufname(bufnr)
+
+--         -- Add a separator after each tab except the last one
+--         if i > 1 then
+--             tabline = tabline .. " | "
+--         end
+
+--         -- Customize the display of each tab item here (e.g., filename)
+--         tabline = tabline .. "%" .. i .. "T" .. (bufname ~= "" and bufname or "[No Name]")
+--     end
+--     return tabline
+-- end
+
+-- -- Set the custom tabline as a string
+-- vim.opt.tabline = [[%!luaeval('custom_tabline()')]]
+
+-- -- Enable the tabline
+-- vim.opt.showtabline = 2

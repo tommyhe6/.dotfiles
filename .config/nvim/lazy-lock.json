@@ -11,10 +11,10 @@
   "friendly-snippets": { "branch": "main", "commit": "8875cccf779160303bf2bed7d422717676f214fd" },
   "fzf-lua": { "branch": "main", "commit": "5039478fd0e11657eb8abf81c40b9f61fb6b6914" },
   "jupyter_ascending.vim": { "branch": "master", "commit": "8b0f533fbf7f48d12feddedc10b78c53afa41bc2" },
-  "kitty-vim-tmux-navigator": { "branch": "master", "commit": "a63deb2699d773fabacbf24bf3656efb6fb50748" },
   "lazy.nvim": { "branch": "main", "commit": "ebdd0499551765e6a7aba220cc8ae4e0cdb6be69" },
   "leap.nvim": { "branch": "main", "commit": "be918a8e6aa00a6cfa7270d4bfcc11b2f80d6902" },
   "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },
+  "neogit": { "branch": "master", "commit": "656b40e78ff39409eacbee8d8b2dbb47667cee68" },
   "null-ls.nvim": { "branch": "main", "commit": "4b055d84be42c90a7240785d3c83340d259d3d46" },
   "nvim-autopairs": { "branch": "master", "commit": "59df87a84c80a357ca8d8fe86e451b93ac476ccc" },
   "nvim-cmp": { "branch": "main", "commit": "b43bfaf3229d6b39d8baaa567b13c6be0623bf12" },
@@ -31,6 +31,7 @@
   "tabout.nvim": { "branch": "master", "commit": "0d275c8d25f32457e67b5c66d6ae43f26a61bce5" },
   "undotree": { "branch": "master", "commit": "485f01efde4e22cb1ce547b9e8c9238f36566f21" },
   "vim-commentary": { "branch": "master", "commit": "e87cd90dc09c2a203e13af9704bd0ef79303d755" },
+  "vim-just": { "branch": "main", "commit": "fbcfcf96cf7c67cf0d4ad15b7af5069f65440c4f" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vimtex": { "branch": "master", "commit": "ed5c5eafe47dc8e0212f2ecafc0676a550a849e4" }
 }

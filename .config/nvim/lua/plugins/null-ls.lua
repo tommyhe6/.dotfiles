@@ -25,18 +25,6 @@ return {
 				-- diagnostics.golangci_lint,
                 -- tex
                 formatting.latexindent,
-                -- c/c++
-                -- formatting.clang_format,
-                {
-                    method = null_ls.methods.FORMATTING,
-                    filetypes = { "c", "cpp", "h", "hpp", ".def" },
-                    generator = null_ls.formatter{
-                        command = "trc-clang-format",
-                        args = { "-i", '$FILENAME' },
-                        to_stdin = true,
-                        from_stderr = true,
-                    },
-                },
                 -- shell
                 diagnostics.shellcheck,
 			},
