@@ -5,8 +5,31 @@ return {
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
-				ensure_installed = "all", -- one of "all" or a list of languages
-				ignore_install = { "phpdoc", "php" }, -- List of parsers to ignore installing
+				ensure_installed = {
+					"c",
+					"cpp",
+					"cmake",
+					"go",
+					"gomod",
+					"gosum",
+					"html",
+					"java",
+					"json",
+					"latex",
+					"make",
+					"rust",
+					"css",
+					"javascript",
+					"typescript",
+					"tsx",
+					"vim",
+					"yaml",
+					"markdown_inline",
+                    "python",
+                    "nix",
+                    "xml",
+				},
+				ignore_install = { "phpdoc", "php" },
 				highlight = {
 					enable = true,
 					disable = { "latex" },
@@ -31,10 +54,6 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"p00f/nvim-ts-rainbow", -- rainbow nested parentheses
-		event = "BufReadPost",
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring", -- comments in context using treesitter

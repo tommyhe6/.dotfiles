@@ -12,28 +12,17 @@ return {
 				desc = "LSP actions",
 				callback = function()
 					local opts = { buffer = true, noremap = true, silent = true }
-					-- Displays hover information about the symbol under the cursor
 					vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", opts)
-					-- Jump to the definition
 					vim.keymap.set("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>")
-					-- Jump to declaration
 					vim.keymap.set("n", "gD", "<CMD>lua vim.lsp.buf.declaration()<CR>")
-					-- Lists all the implementations for the symbol under the cursor
 					vim.keymap.set("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
-					-- Jumps to the definition of the type symbol
 					vim.keymap.set("n", "gy", "<CMD>lua vim.lsp.buf.type_definition()<CR>")
-					-- Lists all the references
 					vim.keymap.set("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
-					-- Renames all references to the symbol under the cursor
 					vim.keymap.set("n", "ch", "<CMD>lua vim.lsp.buf.rename()<CR>")
-					-- Show diagnostics in a floating window
 					vim.keymap.set("n", "gl", "<CMD>lua vim.diagnostic.open_float()<CR>")
-					-- Move to the previous diagnostic
 					vim.keymap.set("n", "g[", "<CMD>lua vim.diagnostic.goto_prev()<CR>")
-					-- Move to the next diagnostic
 					vim.keymap.set("n", "g]", "<CMD>lua vim.diagnostic.goto_next()<CR>")
-                    -- Show code actions
-                    vim.keymap.set("n", "gk", "<CMD>lua vim.lsp.buf.code_action()<CR>")
+					vim.keymap.set("n", "gk", "<CMD>lua vim.lsp.buf.code_action()<CR>")
 				end,
 			})
 
@@ -59,7 +48,6 @@ return {
 				float = {
 					focusable = false,
 					style = "minimal",
-					border = "rounded",
 					source = "always",
 					header = "",
 					prefix = "",
@@ -73,11 +61,12 @@ return {
 			lspconfig.tsserver.setup({})
 			lspconfig.clangd.setup({
 				cmd = {
-                    "clangd",
+					"clangd",
 					"--offset-encoding=utf-16",
-                    "--clang-tidy",
+					"--clang-tidy",
 				},
 			})
+			lspconfig.nixd.setup({})
 			-- lspconfig.wgsl_analyzer.setup({})
 		end,
 	},

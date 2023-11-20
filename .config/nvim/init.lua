@@ -13,6 +13,7 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("keymaps")
 require("options")
+require("format")
 require("lazy").setup("plugins", {
 	install = { colorscheme = { "dracula" } },
 	performance = {

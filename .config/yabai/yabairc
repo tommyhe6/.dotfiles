@@ -39,7 +39,6 @@ yabai -m config window_gap                   10
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Calendar$" manage=off
 yabai -m rule --add app="^Maps$" manage=off
-yabai -m rule --add app="^Microsoft Outlook$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Color Picker$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
@@ -48,7 +47,6 @@ yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^League of Legends$" manage=off
 yabai -m rule --add app="^Steam$" manage=off
-yabai -m rule --add app="^Discord$" manage=off
 yabai -m rule --add app="^Anki$" manage=off
 
 # signals shift focus on close
