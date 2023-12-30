@@ -2,6 +2,13 @@
 
 let homeDirectory = "/Users/tommyhe"; in
 {
+  nix = {
+    settings = {
+      build-users-group = "nixbld";
+      experimental-features = "nix-command flakes repl-flake";
+    };
+  };
+
   home = {
     username = "tommyhe";
     homeDirectory = homeDirectory;
@@ -23,7 +30,7 @@ let homeDirectory = "/Users/tommyhe"; in
     };
 
     file = {
-        ".psqlrc".source = ../psql/psqlrc;
+      ".psqlrc".source = ../psql/psqlrc;
     };
   };
 

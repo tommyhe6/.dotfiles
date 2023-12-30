@@ -8,7 +8,7 @@
   };
 
   nix = {
-    package = pkgs.nix;
+    package = pkgs.nixUnstable;
     configureBuildUsers = true;
     settings.experimental-features = "nix-command flakes repl-flake";
     gc = {
