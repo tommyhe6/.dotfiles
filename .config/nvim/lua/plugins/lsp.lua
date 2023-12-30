@@ -23,6 +23,9 @@ return {
 					vim.keymap.set("n", "g[", "<CMD>lua vim.diagnostic.goto_prev()<CR>")
 					vim.keymap.set("n", "g]", "<CMD>lua vim.diagnostic.goto_next()<CR>")
 					vim.keymap.set("n", "gk", "<CMD>lua vim.lsp.buf.code_action()<CR>")
+					-- vim.keymap.set("n", "go", function()
+					-- 	vim.lsp.buf.format({ async = true })
+					-- end, opts)
 				end,
 			})
 
@@ -67,6 +70,7 @@ return {
 				},
 			})
 			lspconfig.nixd.setup({})
+			lspconfig.racket_langserver.setup({})
 			-- lspconfig.wgsl_analyzer.setup({})
 		end,
 	},

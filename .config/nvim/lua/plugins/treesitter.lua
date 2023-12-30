@@ -25,9 +25,12 @@ return {
 					"vim",
 					"yaml",
 					"markdown_inline",
-                    "python",
-                    "nix",
-                    "xml",
+					"python",
+					"nix",
+					"xml",
+					"racket",
+					"haskell",
+                    "norg",
 				},
 				ignore_install = { "phpdoc", "php" },
 				highlight = {
@@ -55,12 +58,15 @@ return {
 			})
 		end,
 	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring", -- comments in context using treesitter
-		event = "BufReadPost",
-	},
+	-- {
+	-- 	"JoosepAlviste/nvim-ts-context-commentstring", -- comments in context using treesitter
+	-- 	event = "BufReadPost",
+	-- },
 	{
 		"nvim-treesitter/playground", -- treesitter playground for dev
 		cmd = "TSPlaygroundToggle",
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context", -- stick context on top
 	},
 }

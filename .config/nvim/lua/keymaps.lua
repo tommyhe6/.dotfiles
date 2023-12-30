@@ -32,17 +32,28 @@ k("n", "gh", "<CMD>noh<CR>", opts)
 -- format
 k("n", "go", "<CMD>Format<CR>", opts)
 
+-- ts
+k("n", "g(", function()
+	require("treesitter-context").go_to_context()
+end, opts)
+
 -- fzf
-k("n", "<leader>f", "<CMD>lua require('fzf-lua').files()<CR>", opts)
-k("n", "<leader>g", "<CMD>lua require('fzf-lua').live_grep()<CR>", opts)
+k("n", "<leader>f", function()
+	require("fzf-lua").files()
+end, opts)
+k("n", "<leader>g", function()
+	require("fzf-lua").live_grep()
+end, opts)
 
 -- CP
-k("n", "<leader>i", "<CMD>vsp %:r.in<CR><C-w>r<CR>", opts)                            -- CP open input file
+k("n", "<leader>i", "<CMD>vsp %:r.in<CR><C-w>r<CR>", opts) -- CP open input file
 k("n", "<leader>j", "<CMD>!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>", opts) -- CP run with input file
 
 vim.cmd([[
   command! WQ wq
   command! Wq wq
+  command! WA wa
+  command! Wa wa
   command! W w
   command! Q q
 ]])

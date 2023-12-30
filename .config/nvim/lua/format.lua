@@ -1,5 +1,5 @@
 local formatters = {
-	python = "!black --fast %",
+	python = "!ruff format %",
 	javascript = "!prettierd %",
 	typescript = "!prettierd %",
 	javascriptreact = "!prettierd %",
@@ -9,6 +9,7 @@ local formatters = {
 	lua = "!stylua %",
 	nix = "!nixpkgs-fmt %",
 	json = "%!jq",
+    racket = "!raco fmt -i %"
 }
 
 vim.cmd("command! Format lua require'format'.format()")

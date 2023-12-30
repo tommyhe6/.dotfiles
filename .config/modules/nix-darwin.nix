@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   users.users.tommyhe = {
     name = "tommyhe";
@@ -34,6 +35,10 @@
   services.nix-daemon.enable = true;
   services.yabai.enable = true;
   services.skhd.enable = true;
+  services.postgresql = {
+    enable = true;
+    dataDir = "/var/lib/postgresql";
+  };
 
   homebrew = {
     enable = true;
@@ -72,6 +77,11 @@
 
       "microsoft-word"
       "microsoft-excel"
+      # "libreoffice"
+
+      "readdle-spark"
+      "nuclear"
+      "thunderbird"
     ];
   };
 }

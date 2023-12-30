@@ -32,6 +32,12 @@ return {
 		config = true,
 	},
 	{ "github/copilot.vim" }, -- copilot
+	-- {
+	-- 	"sourcegraph/sg.nvim",
+	-- 	config = function()
+	-- 		require("sg").setup()
+	-- 	end,
+	-- }, -- cody
 	{ "untitled-ai/jupyter_ascending.vim" }, -- jupyter integration
 
 	-- fzf
@@ -58,14 +64,36 @@ return {
 		ft = { "\\cjustfile", "*.just", ".justfile" },
 	},
 
-	-- {
-	-- 	"glacambre/firenvim",
+	-- md preview
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 
-	-- 	-- Lazy load firenvim
-	-- 	-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-	-- 	lazy = not vim.g.started_by_firenvim,
-	-- 	build = function()
-	-- 		vim.fn["firenvim#install"](0)
-	-- 	end,
-	-- },
+	{
+		{
+			"nvim-neorg/neorg",
+			build = ":Neorg sync-parsers",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("neorg").setup({
+					load = {
+						["core.defaults"] = {}, -- Loads default behaviour
+						["core.concealer"] = {}, -- Adds pretty icons to your documents
+						["core.dirman"] = { -- Manages Neorg workspaces
+							config = {
+								workspaces = {
+									notes = "~/notes",
+								},
+							},
+						},
+					},
+				})
+			end,
+		},
+	},
 }

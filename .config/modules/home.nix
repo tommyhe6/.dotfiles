@@ -6,6 +6,25 @@ let homeDirectory = "/Users/tommyhe"; in
     username = "tommyhe";
     homeDirectory = homeDirectory;
     stateVersion = "23.05";
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      DBUS_SESSION_BUS_ADDRESS = "unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"; # vimtex
+
+    };
+
+    shellAliases = {
+      l = "eza --git --icons --long";
+      la = "eza --git --icons --long --all";
+      ll = "eza --git --icons";
+      g = "git";
+      dots = "git --git-dir=/Users/tommyhe/.dotfiles/ --work-tree=/Users/tommyhe $argv";
+    };
+
+    file = {
+        ".psqlrc".source = ../psql/psqlrc;
+    };
   };
 
   home.packages = with pkgs; [
@@ -22,9 +41,9 @@ let homeDirectory = "/Users/tommyhe"; in
     # cli utils
     fzf
     eza
-    tmux
     jq
     bat
+    fd
     tree
     wget
     curl
@@ -33,18 +52,19 @@ let homeDirectory = "/Users/tommyhe"; in
     pandoc
     ncdu
     ripgrep
-    # dive TODO: look into
+    hyperfine
+    entr
     # ngrok TODO: unfree
 
     # dev
     just
     cmake
-    tmux
     qemu
-    postgresql
     colima
     docker
     docker-compose
+    google-cloud-sdk
+    lighttpd
 
     # ops
     zathura
@@ -73,8 +93,9 @@ let homeDirectory = "/Users/tommyhe"; in
     python3Full
     poetry
     nodePackages.pyright
-    isort
-    black
+    # isort
+    # black
+    ruff
 
     # js/ts
     nodePackages.nodejs
@@ -84,15 +105,22 @@ let homeDirectory = "/Users/tommyhe"; in
     nodePackages.typescript-language-server
 
     # c/c++
-    # gcc13 # symlink join to have both gcc and clang?
-    # gdb # configure rosetta to work somehow
+    (hiPrio gcc13) # TODO: symlink join to have both gcc and clang?
+    # gdb # TODO: configure rosetta to work somehow
     clang
     clang-tools
 
     # latex
     texlive.combined.scheme-medium
 
+    # racket
+    racket-minimal
 
+    # prolog
+    swiProlog
+
+    # haskell
+    ghc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -108,23 +136,6 @@ let homeDirectory = "/Users/tommyhe"; in
     # '')
   ];
 
-  home = {
-    sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      DBUS_SESSION_BUS_ADDRESS = "unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"; # vimtex
-
-    };
-
-    shellAliases = {
-      l = "eza --git --icons --long";
-      la = "eza --git --icons --long --all";
-      ll = "eza --git --icons";
-      g = "git";
-      dots = "git --git-dir=/Users/tommyhe/.dotfiles/ --work-tree=/Users/tommyhe $argv";
-    };
-  };
-
   # TODO: link nvim, kitty, zathura config
   programs.home-manager.enable = true;
   programs.zoxide.enable = true;
@@ -132,6 +143,31 @@ let homeDirectory = "/Users/tommyhe"; in
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    stdlib = ''
+      layout_poetry() {
+          PYPROJECT_TOML="''${PYPROJECT_TOML:-pyproject.toml}"
+          if [[ ! -f "$PYPROJECT_TOML" ]]; then
+              log_status "No pyproject.toml found. Executing \`poetry init\` to create a \`$PYPROJECT_TOML\` first."
+              poetry init
+          fi
+
+          if [[ -d ".venv" ]]; then
+              VIRTUAL_ENV="$(pwd)/.venv"
+          else
+              VIRTUAL_ENV=$(poetry env info --path 2>/dev/null ; true)
+          fi
+
+          if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
+              log_status "No virtual environment exists. Executing \`poetry install\` to create one."
+              poetry install
+              VIRTUAL_ENV=$(poetry env info --path)
+          fi
+
+          PATH_add "$VIRTUAL_ENV/bin"
+          export POETRY_ACTIVE=1
+          export VIRTUAL_ENV
+      }
+    '';
   };
 
   programs.git = {
@@ -145,6 +181,9 @@ let homeDirectory = "/Users/tommyhe"; in
       credential = {
         helper = "osxkeychain";
       };
+      init = {
+        defaultBranch = "master";
+      };
     };
     ignores = [
       ".DS_Store"
@@ -153,6 +192,7 @@ let homeDirectory = "/Users/tommyhe"; in
       ".venv/"
       "node_modules"
       ".env*"
+      ".direnv/"
     ];
   };
 
@@ -202,7 +242,7 @@ let homeDirectory = "/Users/tommyhe"; in
 
       # source secrets
       if [ -f ~/.env ]; then
-        source ~/.env
+        export $(cat ~/.env | xargs)
       fi
       
       # vi mode
@@ -240,17 +280,22 @@ let homeDirectory = "/Users/tommyhe"; in
       cursor_mode
 
       # prompt
-
-      PROMPT='[%W %*] %F{yellow}%n@%m:%~%f %F{%(?.green.red)}%?%f
-      %F{%(?.green.red)}> %F{white}'
-
-      setopt PROMPT_SUBST
       show_virtual_env() {
         if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
           echo "($(basename $VIRTUAL_ENV)) "
         fi
       }
       PROMPT="$(show_virtual_env)$PROMPT"
+
+      autoload -Uz vcs_info
+      zstyle ':vcs_info:*' enable git
+      zstyle ':vcs_info:git*' check-for-changes true
+      zstyle ':vcs_info:git*' formats "(%b) %u %c"
+      precmd() { vcs_info }
+      setopt prompt_subst
+
+      PROMPT='[%W %*] %F{yellow}%n@%m:%~%f %F{%(?.green.red)}%?%f ''${vcs_info_msg_0_}
+      %F{%(?.green.red)}> %F{white}'
     '';
   };
 
@@ -277,26 +322,21 @@ let homeDirectory = "/Users/tommyhe"; in
       bind s split-window -v -c "#{pane_current_path}"
       bind t new-session
       bind-key r choose-tree -swZ
-
-      set -g status-interval 3
-
-      # status line
-      set -g status-bg black
-      set -g status-justify left
-      set -g status-left-length '100'
-      set -g status-right-length '100'
-      set -g message-style fg='colour222',bg='colour238'
-      set -g message-command-style fg='colour222',bg='colour238'
-      set -g pane-border-style fg='colour238'
-      set -g pane-active-border-style fg='colour154'
-      setw -g window-status-activity-style fg='colour154',bg='colour235',none
-      setw -g window-status-separator '''
-      setw -g window-status-style fg='colour121',bg='colour235',none
-      set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]'
-      set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami)@#H   %m-%d  %H:%M:%S'
-      setw -g window-status-format '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[default] #I  #W #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
-      setw -g window-status-current-format '#[fg=colour222,bg=colour238] #I  #W  #F'
     '';
+
+    plugins = [
+      {
+        plugin = pkgs.tmuxPlugins.dracula;
+        extraConfig = ''
+          set -g @dracula-plugins "time"
+          set -g @dracula-show-left-icon session
+          set -g @dracula-left-icon-padding 1
+          set -g @dracula-border-contrast true
+          set -g @dracula-time-format "%m-%d  %H:%M:%S"
+          set -g @dracula-refresh-rate 1
+        '';
+      }
+    ];
   };
 
   programs.vim = {
@@ -399,7 +439,6 @@ let homeDirectory = "/Users/tommyhe"; in
       color_theme = "TTY";
       theme_background = true;
       vim_keys = true;
-      proc_tree = true;
     };
   };
 }
