@@ -1,0 +1,17 @@
+[font]
+normal.family = "MesloLGM Nerd Font"
+bold.family = "MesloLGM Nerd Font"
+italic.family = "MesloLGM Nerd Font"
+bold_italic.family = "MesloLGM Nerd Font"
+size=14.0
+
+[window]
+decorations="None"
+
+[keyboard]
+bindings = [
+{ key="F",  mods="Alt", chars="\u001bf" },
+{ key="B",  mods="Alt", chars="\u001bb" }
+]
+
+
