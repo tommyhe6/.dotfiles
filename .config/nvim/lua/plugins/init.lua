@@ -5,7 +5,14 @@ return {
 	{ "tpope/vim-repeat" }, -- useful for plugins to use .
 
 	-- utils
-	{ "tpope/vim-commentary" }, -- commenting
+	-- { "tpope/vim-commentary" }, -- commenting
+	{
+		"numToStr/Comment.nvim",
+		lazy = false,
+		config = function()
+			require("Comment").setup()
+		end,
+	}, -- commenting
 	{ "nvim-tree/nvim-web-devicons" }, -- icons for tree and lualine
 	{
 		"nvim-lualine/lualine.nvim", -- status line
@@ -31,13 +38,20 @@ return {
 		"kylechui/nvim-surround", -- surround
 		config = true,
 	},
-	{ "github/copilot.vim" }, -- copilot
 	-- {
-	-- 	"sourcegraph/sg.nvim",
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
 	-- 	config = function()
-	-- 		require("sg").setup()
+	-- 		require("copilot").setup({})
 	-- 	end,
-	-- }, -- cody
+	-- },
+	{
+		"sourcegraph/sg.nvim",
+		config = function()
+			require("sg").setup()
+		end,
+	}, -- cody
 	{ "untitled-ai/jupyter_ascending.vim" }, -- jupyter integration
 
 	-- fzf
@@ -54,7 +68,9 @@ return {
 	{
 		"NeogitOrg/neogit",
 		dependencies = "nvim-lua/plenary.nvim",
-		config = true,
+		config = function()
+			require("neogit").setup()
+		end,
 	},
 
 	-- just

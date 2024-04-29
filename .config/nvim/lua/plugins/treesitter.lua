@@ -6,6 +6,8 @@ return {
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
 				ensure_installed = {
+					"comment",
+
 					"c",
 					"cpp",
 					"cmake",
@@ -30,7 +32,10 @@ return {
 					"xml",
 					"racket",
 					"haskell",
-                    "norg",
+					"norg",
+					"sql",
+					"vim",
+                    "terraform",
 				},
 				ignore_install = { "phpdoc", "php" },
 				highlight = {
@@ -58,15 +63,8 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"JoosepAlviste/nvim-ts-context-commentstring", -- comments in context using treesitter
-	-- 	event = "BufReadPost",
-	-- },
 	{
 		"nvim-treesitter/playground", -- treesitter playground for dev
 		cmd = "TSPlaygroundToggle",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context", -- stick context on top
 	},
 }

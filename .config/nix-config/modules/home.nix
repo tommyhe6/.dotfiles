@@ -18,7 +18,6 @@ let homeDirectory = "/Users/tommyhe"; in
       EDITOR = "nvim";
       VISUAL = "nvim";
       DBUS_SESSION_BUS_ADDRESS = "unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"; # vimtex
-
     };
 
     shellAliases = {
@@ -27,6 +26,7 @@ let homeDirectory = "/Users/tommyhe"; in
       ll = "eza --git --icons";
       g = "git";
       dots = "git --git-dir=/Users/tommyhe/.dotfiles/ --work-tree=/Users/tommyhe $argv";
+      v = "nvim";
     };
 
     file = {
@@ -46,7 +46,6 @@ let homeDirectory = "/Users/tommyhe"; in
     diffutils
 
     # cli utils
-    fzf
     eza
     jq
     bat
@@ -61,6 +60,12 @@ let homeDirectory = "/Users/tommyhe"; in
     ripgrep
     hyperfine
     entr
+    ranger
+    delta
+    ghostscript
+    imagemagick
+    yt-dlp
+    poppler_utils
     # ngrok TODO: unfree
 
     # dev
@@ -70,11 +75,10 @@ let homeDirectory = "/Users/tommyhe"; in
     colima
     docker
     docker-compose
-    google-cloud-sdk
     lighttpd
 
     # ops
-    zathura
+    # zathura
 
     # requests
     httpie
@@ -100,8 +104,6 @@ let homeDirectory = "/Users/tommyhe"; in
     python3Full
     poetry
     nodePackages.pyright
-    # isort
-    # black
     ruff
 
     # js/ts
@@ -110,6 +112,7 @@ let homeDirectory = "/Users/tommyhe"; in
     yarn
     nodePackages.pnpm
     nodePackages.typescript-language-server
+    nodePackages.prettier
 
     # c/c++
     (hiPrio gcc13) # TODO: symlink join to have both gcc and clang?
@@ -118,7 +121,7 @@ let homeDirectory = "/Users/tommyhe"; in
     clang-tools
 
     # latex
-    texlive.combined.scheme-medium
+    texliveFull
 
     # racket
     racket-minimal
@@ -128,6 +131,14 @@ let homeDirectory = "/Users/tommyhe"; in
 
     # haskell
     ghc
+
+    # sqls
+    sqls
+    sqlfluff
+    pgformatter
+
+    # terraform
+    terraform-ls
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -150,31 +161,6 @@ let homeDirectory = "/Users/tommyhe"; in
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    stdlib = ''
-      layout_poetry() {
-          PYPROJECT_TOML="''${PYPROJECT_TOML:-pyproject.toml}"
-          if [[ ! -f "$PYPROJECT_TOML" ]]; then
-              log_status "No pyproject.toml found. Executing \`poetry init\` to create a \`$PYPROJECT_TOML\` first."
-              poetry init
-          fi
-
-          if [[ -d ".venv" ]]; then
-              VIRTUAL_ENV="$(pwd)/.venv"
-          else
-              VIRTUAL_ENV=$(poetry env info --path 2>/dev/null ; true)
-          fi
-
-          if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
-              log_status "No virtual environment exists. Executing \`poetry install\` to create one."
-              poetry install
-              VIRTUAL_ENV=$(poetry env info --path)
-          fi
-
-          PATH_add "$VIRTUAL_ENV/bin"
-          export POETRY_ACTIVE=1
-          export VIRTUAL_ENV
-      }
-    '';
   };
 
   programs.git = {
@@ -184,12 +170,30 @@ let homeDirectory = "/Users/tommyhe"; in
     extraConfig = {
       core = {
         editor = "nvim";
+        pager = "delta";
       };
       credential = {
         helper = "osxkeychain";
       };
       init = {
         defaultBranch = "master";
+      };
+      merge = {
+        conflictStyle = "zdiff3";
+        tool = "nvimdiff";
+      };
+      diff = {
+        algorithm = "histogram";
+        tool = "nvimdiff";
+      };
+      branch = {
+        sort = "committerdate";
+      };
+      tag = {
+        sort = "taggerdate";
+      };
+      log = {
+        date = "iso";
       };
     };
     ignores = [
@@ -311,7 +315,7 @@ let homeDirectory = "/Users/tommyhe"; in
     baseIndex = 1;
     clock24 = true;
     escapeTime = 0;
-    historyLimit = 10000;
+    historyLimit = 50000;
     keyMode = "vi";
     mouse = true;
     terminal = "screen-256color";
@@ -342,6 +346,9 @@ let homeDirectory = "/Users/tommyhe"; in
           set -g @dracula-time-format "%m-%d  %H:%M:%S"
           set -g @dracula-refresh-rate 1
         '';
+      }
+      {
+        plugin = pkgs.tmuxPlugins.yank;
       }
     ];
   };
@@ -447,5 +454,9 @@ let homeDirectory = "/Users/tommyhe"; in
       theme_background = true;
       vim_keys = true;
     };
+  };
+
+  programs.fzf = {
+    enable = true;
   };
 }

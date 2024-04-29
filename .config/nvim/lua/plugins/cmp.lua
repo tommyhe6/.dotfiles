@@ -106,6 +106,7 @@ return {
 						luasnip = "[Snippet]",
 						buffer = "[Buffer]",
 						path = "[Path]",
+						cody = "[Cody]",
 					})[entry.source.name]
 					return vim_item
 				end,
@@ -115,6 +116,7 @@ return {
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
+                { name = "cody" },
 			},
 			confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,

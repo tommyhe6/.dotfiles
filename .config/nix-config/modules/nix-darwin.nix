@@ -35,10 +35,6 @@
   services.nix-daemon.enable = true;
   services.yabai.enable = true;
   services.skhd.enable = true;
-  services.postgresql = {
-    enable = true;
-    dataDir = "/var/lib/postgresql";
-  };
 
   homebrew = {
     enable = true;
@@ -46,6 +42,7 @@
     global = {
       brewfile = true;
       lockfiles = true;
+      autoUpdate = false;
     };
 
     brews = [
@@ -74,10 +71,13 @@
       "bitwarden"
 
       "kitty"
+      "alacritty"
+      "wezterm"
+      "cursor"
 
       "microsoft-word"
       "microsoft-excel"
-      # "libreoffice"
+      # "libreoffice" fails for some reason
 
       "readdle-spark"
       "nuclear"

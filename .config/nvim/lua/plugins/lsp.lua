@@ -5,24 +5,25 @@ return {
 			local lspconfig = require("lspconfig")
 			local lsp_defaults = lspconfig.util.default_config
 
-			lsp_defaults.capabilities =
-				vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+			lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+			vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+			vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, opts)
+			vim.keymap.set("n", "g]", vim.diagnostic.goto_next, opts)
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function()
 					local opts = { buffer = true, noremap = true, silent = true }
-					vim.keymap.set("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", opts)
-					vim.keymap.set("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>")
-					vim.keymap.set("n", "gD", "<CMD>lua vim.lsp.buf.declaration()<CR>")
-					vim.keymap.set("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
-					vim.keymap.set("n", "gy", "<CMD>lua vim.lsp.buf.type_definition()<CR>")
-					vim.keymap.set("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
-					vim.keymap.set("n", "ch", "<CMD>lua vim.lsp.buf.rename()<CR>")
-					vim.keymap.set("n", "gl", "<CMD>lua vim.diagnostic.open_float()<CR>")
-					vim.keymap.set("n", "g[", "<CMD>lua vim.diagnostic.goto_prev()<CR>")
-					vim.keymap.set("n", "g]", "<CMD>lua vim.diagnostic.goto_next()<CR>")
-					vim.keymap.set("n", "gk", "<CMD>lua vim.lsp.buf.code_action()<CR>")
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					vim.keymap.set("i", "<C-S-K>", vim.lsp.buf.signature_help, opts)
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+					vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+					vim.keymap.set("n", "ch", vim.lsp.buf.rename, opts)
+					vim.keymap.set("n", "gk", vim.lsp.buf.code_action, opts)
 					-- vim.keymap.set("n", "go", function()
 					-- 	vim.lsp.buf.format({ async = true })
 					-- end, opts)
@@ -71,6 +72,9 @@ return {
 			})
 			lspconfig.nixd.setup({})
 			lspconfig.racket_langserver.setup({})
+			lspconfig.sqls.setup({})
+			lspconfig.terraformls.setup({})
+
 			-- lspconfig.wgsl_analyzer.setup({})
 		end,
 	},
