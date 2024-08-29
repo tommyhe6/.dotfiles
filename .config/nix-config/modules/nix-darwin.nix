@@ -8,12 +8,15 @@
   };
 
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     configureBuildUsers = true;
-    settings.experimental-features = "nix-command flakes repl-flake";
+    settings.experimental-features = "nix-command flakes";
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";
+    };
+    optimise = {
+        automatic = true;
     };
   };
 
@@ -23,12 +26,6 @@
   };
 
   system.stateVersion = 4;
-  # system.activationScripts.postUserActivation = ''
-  #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-  #   colima start
-  # '';
-
-
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
@@ -70,18 +67,17 @@
 
       "bitwarden"
 
-      "kitty"
       "alacritty"
-      "wezterm"
-      "cursor"
+      "1password"
 
       "microsoft-word"
       "microsoft-excel"
+      "microsoft-powerpoint"
       # "libreoffice" fails for some reason
 
-      "readdle-spark"
-      "nuclear"
-      "thunderbird"
+      "minecraft"
+
+      "rancher"
     ];
   };
 }

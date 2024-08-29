@@ -30,7 +30,7 @@ return {
     {
         "abecodes/tabout.nvim",
         event = "InsertEnter",
-        config = {
+        opts = {
             tabkey = "<C-n>",
             backwards_tabkey = "<C-p>",
             tabouts = {

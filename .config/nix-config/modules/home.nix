@@ -4,8 +4,7 @@ let homeDirectory = "/Users/tommyhe"; in
 {
   nix = {
     settings = {
-      build-users-group = "nixbld";
-      experimental-features = "nix-command flakes repl-flake";
+      experimental-features = "nix-command flakes";
     };
   };
 
@@ -18,6 +17,7 @@ let homeDirectory = "/Users/tommyhe"; in
       EDITOR = "nvim";
       VISUAL = "nvim";
       DBUS_SESSION_BUS_ADDRESS = "unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"; # vimtex
+      LESS = "--status-column --long-prompt --shift 10 --chop-long-lines";
     };
 
     shellAliases = {
@@ -35,7 +35,7 @@ let homeDirectory = "/Users/tommyhe"; in
   };
 
   home.packages = with pkgs; [
-    # posix utils
+    # common utils
     gnumake
     coreutils-full
     gawk
@@ -44,6 +44,11 @@ let homeDirectory = "/Users/tommyhe"; in
     gnugrep
     findutils
     diffutils
+    inetutils
+    nmap
+    man-pages
+    man-db
+    man-pages-posix
 
     # cli utils
     eza
@@ -59,38 +64,34 @@ let homeDirectory = "/Users/tommyhe"; in
     ncdu
     ripgrep
     hyperfine
-    entr
     ranger
+    just
     delta
     ghostscript
     imagemagick
     yt-dlp
     poppler_utils
+    cloc
+    file
+    tshark
+    gnupg
+    httpie
+    zellij
     # ngrok TODO: unfree
 
     # dev
-    just
-    cmake
     qemu
-    colima
     docker
     docker-compose
-    lighttpd
+    gh
+    dive
 
     # ops
     # zathura
 
-    # requests
-    httpie
-    websocat
-
     # nix
     nixd
     nixpkgs-fmt
-
-    # go
-    go
-    gopls
 
     # rust
     rustup
@@ -102,43 +103,21 @@ let homeDirectory = "/Users/tommyhe"; in
 
     # python
     python3Full
-    poetry
-    nodePackages.pyright
+    pyright
     ruff
 
     # js/ts
     nodePackages.nodejs
-    typescript
-    yarn
-    nodePackages.pnpm
     nodePackages.typescript-language-server
     nodePackages.prettier
+    nodePackages.pnpm
 
-    # c/c++
-    (hiPrio gcc13) # TODO: symlink join to have both gcc and clang?
-    # gdb # TODO: configure rosetta to work somehow
-    clang
-    clang-tools
-
-    # latex
-    texliveFull
-
-    # racket
-    racket-minimal
-
-    # prolog
-    swiProlog
-
-    # haskell
-    ghc
-
-    # sqls
+    # sql
     sqls
-    sqlfluff
     pgformatter
 
-    # terraform
-    terraform-ls
+    # docker
+    dockerfile-language-server-nodejs
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -153,6 +132,11 @@ let homeDirectory = "/Users/tommyhe"; in
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  programs.man = { 
+    enable = true; 
+    generateCaches = true; 
+  };
 
   # TODO: link nvim, kitty, zathura config
   programs.home-manager.enable = true;
@@ -178,6 +162,9 @@ let homeDirectory = "/Users/tommyhe"; in
       init = {
         defaultBranch = "master";
       };
+      pull = {
+        ff = "only";
+      };
       merge = {
         conflictStyle = "zdiff3";
         tool = "nvimdiff";
@@ -202,7 +189,8 @@ let homeDirectory = "/Users/tommyhe"; in
       "__pycache__/"
       ".venv/"
       "node_modules"
-      ".env*"
+      ".env.*"
+      ".env"
       ".direnv/"
     ];
   };
@@ -217,7 +205,7 @@ let homeDirectory = "/Users/tommyhe"; in
     };
 
     syntaxHighlighting.enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     defaultKeymap = "viins";
 
     history = {
@@ -453,10 +441,17 @@ let homeDirectory = "/Users/tommyhe"; in
       color_theme = "TTY";
       theme_background = true;
       vim_keys = true;
+      update_ms = 1000;
+      proc_per_core = true;
     };
   };
 
   programs.fzf = {
     enable = true;
+  };
+
+  programs.ssh = {
+    enable = true;
+    serverAliveInterval = 60;
   };
 }

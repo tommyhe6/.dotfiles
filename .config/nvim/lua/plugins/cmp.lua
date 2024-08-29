@@ -67,11 +67,11 @@ return {
 				["<C-j>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-                    else
-                        fallback()
-                    end
+					else
+						fallback()
+					end
 				end, { "i", "s" }),
-                ["<C-n>"] = cmp.mapping(function(fallback)
+				["<C-n>"] = cmp.mapping(function(fallback)
 					if luasnip.expandable() then
 						luasnip.expand()
 					elseif luasnip.expand_or_jumpable() then
@@ -87,7 +87,7 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-                ["<C-p>"] = cmp.mapping(function(fallback)
+				["<C-p>"] = cmp.mapping(function(fallback)
 					if luasnip.jumpable(-1) then
 						luasnip.jump(-1)
 					else
@@ -106,7 +106,8 @@ return {
 						luasnip = "[Snippet]",
 						buffer = "[Buffer]",
 						path = "[Path]",
-						cody = "[Cody]",
+						-- cody = "[Cody]",
+						supermaven = "[Super]",
 					})[entry.source.name]
 					return vim_item
 				end,
@@ -116,7 +117,8 @@ return {
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
-                { name = "cody" },
+				{ name = "cody" },
+				{ name = "supermaven" },
 			},
 			confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,

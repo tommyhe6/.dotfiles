@@ -25,6 +25,7 @@ return {
 					"typescript",
 					"tsx",
 					"vim",
+                    "vimdoc",
 					"yaml",
 					"markdown_inline",
 					"python",
@@ -34,8 +35,9 @@ return {
 					"haskell",
 					"norg",
 					"sql",
-					"vim",
                     "terraform",
+                    "just",
+                    "hurl",
 				},
 				ignore_install = { "phpdoc", "php" },
 				highlight = {

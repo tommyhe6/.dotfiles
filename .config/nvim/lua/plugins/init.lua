@@ -17,7 +17,7 @@ return {
 	{
 		"nvim-lualine/lualine.nvim", -- status line
 		event = "BufReadPost",
-		config = {
+		opts = {
 			options = {
 				theme = "dracula-nvim",
 			},
@@ -46,12 +46,12 @@ return {
 	-- 		require("copilot").setup({})
 	-- 	end,
 	-- },
-	{
-		"sourcegraph/sg.nvim",
-		config = function()
-			require("sg").setup()
-		end,
-	}, -- cody
+	-- {
+	-- 	"sourcegraph/sg.nvim",
+	-- 	config = function()
+	-- 		require("sg").setup()
+	-- 	end,
+	-- }, -- cody
 	{ "untitled-ai/jupyter_ascending.vim" }, -- jupyter integration
 
 	-- fzf
@@ -65,13 +65,13 @@ return {
 	},
 
 	-- git integration
-	{
-		"NeogitOrg/neogit",
-		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require("neogit").setup()
-		end,
-	},
+	-- {
+	-- 	"NeogitOrg/neogit",
+	-- 	dependencies = "nvim-lua/plenary.nvim",
+	-- 	config = function()
+	-- 		require("neogit").setup()
+	-- 	end,
+	-- },
 
 	-- just
 	{
@@ -90,26 +90,40 @@ return {
 		end,
 	},
 
+	-- {
+	-- 	{
+	-- 		"nvim-neorg/neorg",
+	-- 		build = ":Neorg sync-parsers",
+	-- 		dependencies = { "nvim-lua/plenary.nvim" },
+	-- 		config = function()
+	-- 			require("neorg").setup({
+	-- 				load = {
+	-- 					["core.defaults"] = {}, -- Loads default behaviour
+	-- 					["core.concealer"] = {}, -- Adds pretty icons to your documents
+	-- 					["core.dirman"] = { -- Manages Neorg workspaces
+	-- 						config = {
+	-- 							workspaces = {
+	-- 								notes = "~/notes",
+	-- 							},
+	-- 						},
+	-- 					},
+	-- 				},
+	-- 			})
+	-- 		end,
+	-- 	},
+	-- },
+	-- supermaven
 	{
-		{
-			"nvim-neorg/neorg",
-			build = ":Neorg sync-parsers",
-			dependencies = { "nvim-lua/plenary.nvim" },
-			config = function()
-				require("neorg").setup({
-					load = {
-						["core.defaults"] = {}, -- Loads default behaviour
-						["core.concealer"] = {}, -- Adds pretty icons to your documents
-						["core.dirman"] = { -- Manages Neorg workspaces
-							config = {
-								workspaces = {
-									notes = "~/notes",
-								},
-							},
-						},
-					},
-				})
-			end,
-		},
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({})
+		end,
+	},
+	{
+		"kevinhwang91/nvim-fundo",
+		dependencies = "kevinhwang91/promise-async",
+		config = function()
+			require("fundo").setup({})
+		end,
 	},
 }

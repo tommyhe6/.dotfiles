@@ -95,8 +95,18 @@ k("o", "u", commented_lines_textobject, opts)
 vim.cmd([[
   command! WQ wq
   command! Wq wq
+  command! WQa wqa
+  command! Wqa wqa
   command! WA wa
   command! Wa wa
   command! W w
   command! Q q
 ]])
+
+-- my log
+k("n", "<leader>rj", [[:put =strftime('# %Y-%m-%d')<CR>]], opts)
+k("n", "<leader>rk", [[:put =strftime('%H:%M')<CR>]], opts)
+
+-- 'cd' towards the directory in which the current file is edited
+k("n", "<leader>cd", "<CMD>cd %:p:h<CR>", opts)
+

@@ -1,16 +1,18 @@
 local formatters = {
-	python = "!ruff format %; ruff check --select I --fix %", -- format and isort
-	javascript = "!prettier -w %",
-	typescript = "!prettier -w %",
-	javascriptreact = "!prettier -w %",
-	typescriptreact = "!prettier -w %",
-	rust = "!rustfmt %",
-	go = "!gofmt -w %",
-	lua = "!stylua %",
-	nix = "!nixpkgs-fmt %",
+	python = "!noglob ruff format %; ruff check --select I --fix %", -- format and isort
+	javascript = "!noglob prettier -w %",
+	typescript = "!noglob prettier -w --parser typescript %",
+	javascriptreact = "!noglob prettier -w %",
+	typescriptreact = "!noglob prettier -w --parser typescript %",
+	html = "!noglob prettier -w %",
+	css = "!noglob prettier -w %",
+	rust = "!noglob rustfmt %",
+	go = "!noglob gofmt -w %",
+	lua = "!noglob stylua %",
+	nix = "!noglob nixpkgs-fmt %",
 	-- json = "!jq . % > %",
-	racket = "!raco fmt -i %",
-	sql = "!pg_format -u 1 -o % %", -- lowercase
+	racket = "!noglob raco fmt -i %",
+	sql = "!noglob pg_format --keyword-case 1 -o % --comma-start %", -- keyword-case 1 = lowercase
 }
 
 vim.cmd("command! Format lua require'format'.format()")

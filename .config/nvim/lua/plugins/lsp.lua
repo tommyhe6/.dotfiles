@@ -5,7 +5,8 @@ return {
 			local lspconfig = require("lspconfig")
 			local lsp_defaults = lspconfig.util.default_config
 
-			lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+			lsp_defaults.capabilities =
+				vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 			vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, opts)
@@ -74,6 +75,7 @@ return {
 			lspconfig.racket_langserver.setup({})
 			lspconfig.sqls.setup({})
 			lspconfig.terraformls.setup({})
+			lspconfig.dockerls.setup({ cmd = { "docker-langserver", "--stdio" } })
 
 			-- lspconfig.wgsl_analyzer.setup({})
 		end,

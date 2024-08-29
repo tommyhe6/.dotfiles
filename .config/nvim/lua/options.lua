@@ -27,15 +27,15 @@ o.number = true -- set numbered lines
 o.relativenumber = true -- set relative numbered lines
 o.numberwidth = 4 -- set number column width to 2 {default 4}
 o.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
-o.wrap = true -- display lines as one long line
+o.wrap = true
 o.scrolloff = 3
 o.sidescrolloff = 3
 o.hidden = true
 o.title = true
 
-o.shortmess:append("c")
-
 vim.cmd([[ let &t_ut='' ]])
+vim.cmd([[ set iskeyword-=_ ]])
+vim.cmd([[ set iskeyword-=- ]])
 
 vim.filetype.add {
     extension = {
