@@ -9,36 +9,19 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
-local function math()
-	local filetype = vim.bo.filetype
-	if filetype == "tex" then
-		return vim.fn["vimtex#syntax#in_mathzone"]() == 1
-	elseif filetype == "html" then
-		-- Check if cursor is within \( \) or \[ \] delimiters
-		return vim.fn.search("\\%(\\\\(\\|\\\\[\\)", "bnW") > vim.fn.search("\\%(\\\\)\\|\\\\]\\)", "bnW")
-	end
-	return false
-end
-
-local text = function()
-	return not math()
-end
-
 return {
 	s(
 		{ trig = "//", snippetType = "autosnippet" },
 		fmta("\\frac{<>}{<>}", {
 			i(1),
 			i(2),
-		}),
-		{ condition = math }
+		})
 	),
 	s(
 		{ trig = "sq" },
 		fmta("\\sqrt{<>}", {
 			i(1),
-		}),
-		{ condition = math }
+		})
 	),
 	s(
 		{ trig = "sum" },
@@ -46,8 +29,7 @@ return {
 			i(1, "i = 0"),
 			i(2, "\\infty"),
 			i(3, "a_ix_i^i"),
-		}),
-		{ condition = math }
+		})
 	),
 	s(
 		{ trig = "prod" },
@@ -55,22 +37,19 @@ return {
 			i(1, "i = 0"),
 			i(2, "\\infty"),
 			i(3, "a_i"),
-		}),
-		{ condition = math }
+		})
 	),
 	s(
 		{ trig = "km", snippetType = "autosnippet" },
 		fmta("\\( <> \\)", {
 			i(1),
-		}),
-		{ condition = text }
+		})
 	),
 	s(
 		{ trig = "dm", snippetType = "autosnippet" },
 		fmta("\\[ <> \\]", {
 			i(1),
-		}),
-		{ condition = text }
+		})
 	),
 	s({ trig = "=>" }, t("\\implies")),
 	s({ trig = "<=" }, t("\\impliedby")),
@@ -96,15 +75,13 @@ return {
 		{ trig = "^^", snippetType = "autosnippet", wordTrig = false },
 		fmta("^{<>}", {
 			i(1),
-		}),
-		{ condition = math }
+		})
 	),
 	s(
 		{ trig = "__", snippetType = "autosnippet", wordTrig = false },
 		fmta("_{<>}", {
 			i(1),
-		}),
-		{ condition = math }
+		})
 	),
 	s(
 		{ trig = "lim" },

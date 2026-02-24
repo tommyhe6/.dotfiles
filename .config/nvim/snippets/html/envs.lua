@@ -9,73 +9,54 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
-local function math()
-	local filetype = vim.bo.filetype
-	if filetype == "tex" then
-		return vim.fn["vimtex#syntax#in_mathzone"]() == 1
-	elseif filetype == "html" then
-		-- Check if cursor is within \( \) or \[ \] delimiters
-		return vim.fn.search("\\%(\\\\(\\|\\\\[\\)", "bnW") > vim.fn.search("\\%(\\\\)\\|\\\\]\\)", "bnW")
-	end
-	return false
-end
-
 return {
     s(
         { trig = "lr<", snippetType = "autosnippet" },
         fmta("\\left\\langle <> \\right\\rangle", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lrf", snippetType = "autosnippet" },
         fmta("\\left\\lfoor <> \\right\\rfloor", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lrc", snippetType = "autosnippet" },
         fmta("\\left\\lceil <> \\right\\rceil", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lrn", snippetType = "autosnippet" },
         fmta("\\left\\lVert <> \\right\\rVert", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lr|", snippetType = "autosnippet" },
         fmta("\\left\\lvert <> \\right\\rvert", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lr(", snippetType = "autosnippet" },
         fmta("\\left( <> \\right)", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lr[", snippetType = "autosnippet" },
         fmta("\\left\\[ <> \\right\\]", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "lr{", snippetType = "autosnippet" },
         fmta("\\left\\{ <> \\right\\}", {
             i(1),
-        }),
-        { condition = math }
+        })
     ),
     s(
         { trig = "txt" },
@@ -142,162 +123,6 @@ return {
             \begin{cases}
                 <>
             \end{cases}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "nota" },
-        fmta(
-            [[
-            \begin{Nota}
-                <>
-            \end{Nota}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "prop" },
-        fmta(
-            [[
-            \begin{Prop}
-                <>
-            \end{Prop}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "que" },
-        fmta(
-            [[
-            \begin{Que}
-                <>
-            \end{Que}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "ex" },
-        fmta(
-            [[
-            \begin{Ex}
-                <>
-            \end{Ex}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "def" },
-        fmta(
-            [[
-            \begin{Def}
-                <>
-            \end{Def}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "lem" },
-        fmta(
-            [[
-            \begin{Lem}
-                <>
-            \end{Lem}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "clm" },
-        fmta(
-            [[
-            \begin{Clm}
-                <>
-            \end{Clm}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "thm" },
-        fmta(
-            [[
-            \begin{Thm}
-                <>
-            \end{Thm}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "pf" },
-        fmta(
-            [[
-            \begin{proof}
-                <>
-            \end{proof}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "rem" },
-        fmta(
-            [[
-            \begin{Rem}
-                <>
-            \end{Rem}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "cor" },
-        fmta(
-            [[
-            \begin{Cor}
-                <>
-            \end{Cor}
-            ]],
-            {
-                i(1),
-            }
-        )
-    ),
-    s(
-        { trig = "conj" },
-        fmta(
-            [[
-            \begin{Conj}
-                <>
-            \end{Conj}
             ]],
             {
                 i(1),

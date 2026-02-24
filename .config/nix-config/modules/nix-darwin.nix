@@ -4,12 +4,12 @@
   users.users.tommyhe = {
     name = "tommyhe";
     home = "/Users/tommyhe";
-    shell = "zsh";
+    # shell = "zsh";
   };
 
   nix = {
     package = pkgs.nixVersions.latest;
-    configureBuildUsers = true;
+    # configureBuildUsers = true;
     settings.experimental-features = "nix-command flakes";
     gc = {
       automatic = true;
@@ -26,10 +26,12 @@
   };
 
   system.stateVersion = 4;
+  system.primaryUser = "tommyhe";
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
 
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   services.yabai.enable = true;
   services.skhd.enable = true;
 
@@ -43,8 +45,8 @@
     };
 
     brews = [
-      "koekeishiya/formulae/skhd"
-      "koekeishiya/formulae/yabai"
+      # "koekeishiya/formulae/skhd"
+      # "koekeishiya/formulae/yabai"
     ];
 
 
@@ -55,7 +57,7 @@
 
       "firefox"
       "google-chrome"
-      "orion"
+      "microsoft-edge"
 
       "notion"
       "raycast"
@@ -64,20 +66,30 @@
       "messenger"
       "discord"
       "slack"
+      "whatsapp@beta"
+      "signal"
 
       "bitwarden"
-
       "alacritty"
       "1password"
 
-      "microsoft-word"
+      "mullvadvpn"
+      "adobe-acrobat-reader"
+      "microsoft-auto-update"
+      # "microsoft-word"
       "microsoft-excel"
-      "microsoft-powerpoint"
+      "onedrive"
+      # "microsoft-powerpoint"
       # "libreoffice" fails for some reason
 
       "minecraft"
 
       "rancher"
+
+      "cursor"
+      "vlc"
+
+      "burp-suite"
     ];
   };
 }

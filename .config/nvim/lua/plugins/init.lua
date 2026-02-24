@@ -38,46 +38,38 @@ return {
 		"kylechui/nvim-surround", -- surround
 		config = true,
 	},
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	cmd = "Copilot",
-	-- 	event = "InsertEnter",
-	-- 	config = function()
-	-- 		require("copilot").setup({})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"sourcegraph/sg.nvim",
-	-- 	config = function()
-	-- 		require("sg").setup()
-	-- 	end,
-	-- }, -- cody
-	{ "untitled-ai/jupyter_ascending.vim" }, -- jupyter integration
 
 	-- fzf
 	{
 		"ibhagwan/fzf-lua",
 		config = function()
+			local actions = require("fzf-lua").actions
 			require("fzf-lua").setup({
+				-- actions = {
+				-- 	files = {
+				-- 		-- instead of the default action 'actions.file_edit_or_qf'
+				-- 		-- it's important to define all other actions here as this
+				-- 		-- table does not get merged with the global defaults
+				-- 		["default"] = actions.file_edit,
+				-- 		["ctrl-s"] = actions.file_split,
+				-- 		["ctrl-v"] = actions.file_vsplit,
+				-- 		["ctrl-t"] = actions.file_tabedit,
+				-- 		["alt-q"] = actions.file_sel_to_qf,
+				-- 	},
+				-- },
 				fzf_opts = { ["--border"] = false },
+				grep = {
+					resume = true,
+					rg_opts = "--sort-files --column --line-number",
+					actions = {
+						["ctrl-q"] = {
+							fn = actions.file_edit_or_qf,
+							prefix = "select-all+",
+						},
+					},
+				},
 			})
 		end,
-	},
-
-	-- git integration
-	-- {
-	-- 	"NeogitOrg/neogit",
-	-- 	dependencies = "nvim-lua/plenary.nvim",
-	-- 	config = function()
-	-- 		require("neogit").setup()
-	-- 	end,
-	-- },
-
-	-- just
-	{
-		"NoahTheDuke/vim-just",
-		event = { "BufReadPre", "BufNewFile" },
-		ft = { "\\cjustfile", "*.just", ".justfile" },
 	},
 
 	-- md preview
@@ -90,29 +82,6 @@ return {
 		end,
 	},
 
-	-- {
-	-- 	{
-	-- 		"nvim-neorg/neorg",
-	-- 		build = ":Neorg sync-parsers",
-	-- 		dependencies = { "nvim-lua/plenary.nvim" },
-	-- 		config = function()
-	-- 			require("neorg").setup({
-	-- 				load = {
-	-- 					["core.defaults"] = {}, -- Loads default behaviour
-	-- 					["core.concealer"] = {}, -- Adds pretty icons to your documents
-	-- 					["core.dirman"] = { -- Manages Neorg workspaces
-	-- 						config = {
-	-- 							workspaces = {
-	-- 								notes = "~/notes",
-	-- 							},
-	-- 						},
-	-- 					},
-	-- 				},
-	-- 			})
-	-- 		end,
-	-- 	},
-	-- },
-	-- supermaven
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function()
@@ -120,10 +89,65 @@ return {
 		end,
 	},
 	{
-		"kevinhwang91/nvim-fundo",
-		dependencies = "kevinhwang91/promise-async",
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+
+			-- Only one of these is needed.
+			"ibhagwan/fzf-lua", -- optional
+		},
 		config = function()
-			require("fundo").setup({})
+			require("neogit").setup({})
 		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	},
+	{
+		"olimorris/codecompanion.nvim",
+		opts = {},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
+		"jpalardy/vim-slime",
+		config = function()
+			vim.g.slime_target = "tmux"
+			vim.g.slime_default_config = {
+				socket_name = vim.fn.split(vim.env.TMUX, ",")[1],
+				target_pane = ":.2",
+			}
+		end,
+	},
+
+	-- lean
+	{
+		"Julian/lean.nvim",
+		event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+
+			-- optional dependencies:
+
+			-- a completion engine
+			--    hrsh7th/nvim-cmp or Saghen/blink.cmp are popular choices
+
+			-- 'nvim-telescope/telescope.nvim', -- for 2 Lean-specific pickers
+			-- 'andymass/vim-matchup',          -- for enhanced % motion behavior
+			-- 'andrewradev/switch.vim',        -- for switch support
+			-- 'tomtom/tcomment_vim',           -- for commenting
+		},
+
+		---@type lean.Config
+		opts = { -- see below for full configuration options
+			mappings = true,
+		},
 	},
 }

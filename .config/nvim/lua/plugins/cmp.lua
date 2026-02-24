@@ -1,6 +1,5 @@
 return {
 	"hrsh7th/nvim-cmp", -- completion engine
-	-- event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- buffer completions
 		"hrsh7th/cmp-path", -- path completions
@@ -20,32 +19,37 @@ return {
 		end
 
 		local kind_icons = {
-			Text = "",
-			Method = "m",
-			Function = "",
-			Constructor = "",
-			Field = "",
-			Variable = "",
-			Class = "",
-			Interface = "",
-			Module = "",
-			Property = "",
-			Unit = "",
-			Value = "",
-			Enum = "",
-			Keyword = "",
-			Snippet = "",
-			Color = "",
-			File = "",
-			Reference = "",
-			Folder = "",
-			EnumMember = "",
-			Constant = "",
-			Struct = "",
-			Event = "",
-			Operator = "",
-			TypeParameter = "",
+			Text = "tx",
+			Method = "fn",
+			Function = "fn",
+            Operator = "op",
+			Constructor = "ctor",
+			Field = "fld",
+			Variable = "var",
+			Class = "cls",
+			Interface = "iface",
+			Module = "mod",
+			Property = "prop",
+			Value = "val",
+			Enum = "enum",
+			EnumMember = "em",
+			Constant = "const",
+			Struct = "struct",
+			TypeParameter = "tp",
+			Keyword = "kw",
+			Snippet = "snip",
+			File = "file",
+			Folder = "dir",
+            -- Unit
+            -- Color
+            -- Reference
+            -- Event
 		}
+		setmetatable(kind_icons, {
+			__index = function()
+				return "?"
+			end,
+		})
 
 		cmp.setup({
 			snippet = {

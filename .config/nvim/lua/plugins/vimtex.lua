@@ -15,8 +15,8 @@ return {
 			},
 		}
 		vim.g.vimtex_compiler_progname = "nvr"
-		-- vim.g.vimtex_view_method = "skim"
-		vim.g.vimtex_view_method = "zathura" -- https://github.com/zegervdv/homebrew-zathura/issues/99
+		vim.g.vimtex_view_method = "skim"
+		-- vim.g.vimtex_view_method = "zathura" -- https://github.com/zegervdv/homebrew-zathura/issues/99
 		vim.g.vimtex_quickfix_mode = 0
 		vim.g.vimtex_view_automatic = 1
 

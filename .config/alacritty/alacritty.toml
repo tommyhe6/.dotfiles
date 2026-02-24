@@ -1,9 +1,9 @@
 [font]
-normal.family = "MesloLGM Nerd Font"
-bold.family = "MesloLGM Nerd Font"
-italic.family = "MesloLGM Nerd Font"
-bold_italic.family = "MesloLGM Nerd Font"
-size=14.0
+normal.family = "CommitMono Nerd Font"
+bold.family = "CommitMono Nerd Font"
+italic.family = "CommitMono Nerd Font"
+bold_italic.family = "CommitMono Nerd Font"
+size=16.0
 
 [window]
 decorations="None"

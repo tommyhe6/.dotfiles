@@ -17,7 +17,7 @@ return {
 				callback = function()
 					local opts = { buffer = true, noremap = true, silent = true }
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("i", "<C-S-K>", vim.lsp.buf.signature_help, opts)
+					vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
@@ -62,8 +62,9 @@ return {
 			lspconfig.lua_ls.setup({})
 			lspconfig.rust_analyzer.setup({})
 			lspconfig.pyright.setup({})
+			-- lspconfig.basedpyright.setup({})
 			lspconfig.gopls.setup({})
-			lspconfig.tsserver.setup({})
+			lspconfig.ts_ls.setup({})
 			lspconfig.clangd.setup({
 				cmd = {
 					"clangd",
@@ -76,6 +77,8 @@ return {
 			lspconfig.sqls.setup({})
 			lspconfig.terraformls.setup({})
 			lspconfig.dockerls.setup({ cmd = { "docker-langserver", "--stdio" } })
+			-- lspconfig.typos_lsp.setup({})
+			lspconfig.tinymist.setup({})
 
 			-- lspconfig.wgsl_analyzer.setup({})
 		end,

@@ -1,5 +1,22 @@
 \timing on
 \x auto
+\pset format wrapped
+
+-- clearer display of nulls
 \pset null '<null>'
+
 \set ON_ERROR_STOP on
+
+-- can commit in interactive mode when errors occur in tx
 \set ON_ERROR_ROLLBACK interactive
+
+-- more verbose err msg
+\set VERBOSITY verbose
+
+-- seperate histfile per database
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups
+
+-- prompt
+-- postgres@postgres=# 
+\set PROMPT1 '%n@%/%x%R%# '

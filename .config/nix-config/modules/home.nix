@@ -6,24 +6,29 @@ let homeDirectory = "/Users/tommyhe"; in
     settings = {
       experimental-features = "nix-command flakes";
     };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+    };
   };
 
   home = {
     username = "tommyhe";
     homeDirectory = homeDirectory;
-    stateVersion = "23.05";
+    stateVersion = "25.05";
 
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
       DBUS_SESSION_BUS_ADDRESS = "unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"; # vimtex
-      LESS = "--status-column --long-prompt --shift 10 --chop-long-lines";
+      LESS = "--status-column --long-prompt --shift 10 --chop-long-lines --line-numbers";
     };
 
     shellAliases = {
       l = "eza --git --icons --long";
       la = "eza --git --icons --long --all";
       ll = "eza --git --icons";
+      ltree = "eza --tree --git --icons";
       g = "git";
       dots = "git --git-dir=/Users/tommyhe/.dotfiles/ --work-tree=/Users/tommyhe $argv";
       v = "nvim";
@@ -42,6 +47,11 @@ let homeDirectory = "/Users/tommyhe"; in
     gnused
     gnutar
     gnugrep
+    gnupatch
+    gnupg
+    procps
+    autoconf
+    wget
     findutils
     diffutils
     inetutils
@@ -51,43 +61,43 @@ let homeDirectory = "/Users/tommyhe"; in
     man-pages-posix
 
     # cli utils
+    moreutils
     eza
     jq
     bat
     fd
     tree
-    wget
     curl
-    tldr
+    ripgrep
     neofetch
     pandoc
-    ncdu
-    ripgrep
     hyperfine
-    ranger
+    yazi
     just
     delta
     ghostscript
     imagemagick
     yt-dlp
-    poppler_utils
+    poppler-utils
     cloc
     file
     tshark
-    gnupg
     httpie
-    zellij
-    # ngrok TODO: unfree
-
-    # dev
+    rclone
+    gdu
+    qpdf
+    ffmpeg
     qemu
     docker
     docker-compose
     gh
     dive
-
-    # ops
-    # zathura
+    claude-code
+    codex
+    gemini-cli
+    jujutsu
+    zathura
+    resvg
 
     # nix
     nixd
@@ -96,15 +106,23 @@ let homeDirectory = "/Users/tommyhe"; in
     # rust
     rustup
 
+    # go
+    gopls
+
     # lua
     lua
     lua-language-server
     stylua
 
     # python
-    python3Full
+    python3Minimal
     pyright
+    basedpyright
     ruff
+    uv
+
+    # prolog
+    swi-prolog
 
     # js/ts
     nodePackages.nodejs
@@ -112,12 +130,29 @@ let homeDirectory = "/Users/tommyhe"; in
     nodePackages.prettier
     nodePackages.pnpm
 
-    # sql
+    # sql/pg
     sqls
     pgformatter
 
     # docker
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
+
+    # R
+    R
+
+    # typos
+    typos-lsp
+
+    # typst
+    typst
+    tinymist
+    typstyle
+
+    # latex
+    texliveFull
+
+    # lean
+    lean4
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -133,9 +168,9 @@ let homeDirectory = "/Users/tommyhe"; in
     # '')
   ];
 
-  programs.man = { 
-    enable = true; 
-    generateCaches = true; 
+  programs.man = {
+    enable = true;
+    generateCaches = true;
   };
 
   # TODO: link nvim, kitty, zathura config
@@ -149,40 +184,39 @@ let homeDirectory = "/Users/tommyhe"; in
 
   programs.git = {
     enable = true;
-    userName = "Tommy He";
-    userEmail = "tommyhe6@gmail.com";
-    extraConfig = {
+
+    settings = {
+      user = {
+        name = "Tommy He";
+        email = "tommyhe6@gmail.com";
+      };
+
       core = {
         editor = "nvim";
         pager = "delta";
       };
-      credential = {
-        helper = "osxkeychain";
-      };
-      init = {
-        defaultBranch = "master";
-      };
-      pull = {
-        ff = "only";
-      };
+
+      credential = { helper = "osxkeychain"; };
+
+      init = { defaultBranch = "master"; };
+      pull = { ff = "only"; };
+      push = { autoSetupRemote = true; };
+
       merge = {
         conflictStyle = "zdiff3";
         tool = "nvimdiff";
       };
+
       diff = {
         algorithm = "histogram";
         tool = "nvimdiff";
       };
-      branch = {
-        sort = "committerdate";
-      };
-      tag = {
-        sort = "taggerdate";
-      };
-      log = {
-        date = "iso";
-      };
+
+      branch = { sort = "committerdate"; };
+      tag = { sort = "taggerdate"; };
+      log = { date = "iso"; };
     };
+
     ignores = [
       ".DS_Store"
       "*.pyc"
@@ -195,6 +229,7 @@ let homeDirectory = "/Users/tommyhe"; in
     ];
   };
 
+
   programs.zsh = {
     enable = true;
 
@@ -206,7 +241,6 @@ let homeDirectory = "/Users/tommyhe"; in
 
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-    defaultKeymap = "viins";
 
     history = {
       ignoreDups = true;
@@ -219,12 +253,12 @@ let homeDirectory = "/Users/tommyhe"; in
       extended = true;
     };
 
-    dotDir = ".config/zsh";
+    dotDir = "${homeDirectory}/.config/zsh";
     autocd = false;
 
     # TODO: move some outside like vi mode
     # TODO: fix up virtual env, especially for direnv
-    initExtra = ''
+    initContent = ''
       # cd history
       setopt AUTO_PUSHD                  # pushes the old directory onto the stack
       setopt PUSHD_MINUS                 # exchange the meanings of '+' and '-'
@@ -243,42 +277,10 @@ let homeDirectory = "/Users/tommyhe"; in
       if [ -f ~/.env ]; then
         export $(cat ~/.env | xargs)
       fi
-      
-      # vi mode
-      bindkey -v
-      KEYTIMEOUT=1
-
-      # make backspace work after insert -> normal -> insert
-      bindkey "^?" backward-delete-char
-
-      cursor_mode() {
-          # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
-          cursor_block='\e[2 q'
-          cursor_beam='\e[6 q'
-
-          function zle-keymap-select {
-              if [[ ''${KEYMAP} == vicmd ]] ||
-                  [[ $1 = 'block' ]]; then
-                  echo -ne $cursor_block
-              elif [[ ''${KEYMAP} == main ]] ||
-                  [[ ''${KEYMAP} == viins ]] ||
-                  [[ ''${KEYMAP} = ''' ]] ||
-                  [[ $1 = 'beam' ]]; then
-                  echo -ne $cursor_beam
-              fi
-          }
-
-          zle-line-init() {
-              echo -ne $cursor_beam
-          }
-
-          zle -N zle-keymap-select
-          zle -N zle-line-init
-      }
-
-      cursor_mode
 
       # prompt
+      # [09/30/24 18:50:53] tommyhe@Un-Macbook:~ 0 0.156 (dev) U
+
       show_virtual_env() {
         if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
           echo "($(basename $VIRTUAL_ENV)) "
@@ -286,15 +288,29 @@ let homeDirectory = "/Users/tommyhe"; in
       }
       PROMPT="$(show_virtual_env)$PROMPT"
 
+      # vcs
       autoload -Uz vcs_info
       zstyle ':vcs_info:*' enable git
       zstyle ':vcs_info:git*' check-for-changes true
       zstyle ':vcs_info:git*' formats "(%b) %u %c"
-      precmd() { vcs_info }
+
+      # timing
+      zmodload zsh/datetime # gives $EPOCHREALTIME
+      preexec() { _ts=$EPOCHREALTIME } # start time
+      typeset -gF3 _secs=0              # elapsed seconds, always shown with 3 decimals
+
+      precmd() {
+        _secs=$(( EPOCHREALTIME - _ts ))   # difference in seconds (float)
+        _ts=$EPOCHREALTIME                 # reset start-time for next prompt
+        vcs_info                           # update Git/Hg/SVN info, etc.
+      }
       setopt prompt_subst
 
-      PROMPT='[%W %*] %F{yellow}%n@%m:%~%f %F{%(?.green.red)}%?%f ''${vcs_info_msg_0_}
+      PROMPT='[%W %*] %F{yellow}%n@%m:%~%f %F{%(?.green.red)}%?%f ''${_secs} ''${vcs_info_msg_0_}
       %F{%(?.green.red)}> %F{white}'
+
+      # PATH
+      export PATH="$HOME/bin:$PATH"
     '';
   };
 
@@ -303,7 +319,7 @@ let homeDirectory = "/Users/tommyhe"; in
     baseIndex = 1;
     clock24 = true;
     escapeTime = 0;
-    historyLimit = 50000;
+    historyLimit = 20000;
     keyMode = "vi";
     mouse = true;
     terminal = "screen-256color";
@@ -337,6 +353,9 @@ let homeDirectory = "/Users/tommyhe"; in
       }
       {
         plugin = pkgs.tmuxPlugins.yank;
+        extraConfig = ''
+          set -g @yank_action 'copy-pipe'
+        '';
       }
     ];
   };
@@ -452,6 +471,28 @@ let homeDirectory = "/Users/tommyhe"; in
 
   programs.ssh = {
     enable = true;
-    serverAliveInterval = 60;
+    matchBlocks."*" = {
+      serverAliveInterval = 60; # <-- your value
+    };
+    extraConfig = ''
+# Session Manager
+Host i-* mi-*
+  ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+  User ec2-user
+
+# Tufa
+Host tufa_bastion
+  HostName 31.12.82.146
+  User tufa
+  IdentityFile ~/.ssh/tufa_compute
+  IdentitiesOnly yes
+
+Host tufa
+  ForwardAgent yes
+  HostName 10.100.0.253
+  User tommyhe
+  ProxyJump tufa_bastion
+  IdentityFile ~/.ssh/tufa_compute
+  IdentitiesOnly yes'';
   };
 }
