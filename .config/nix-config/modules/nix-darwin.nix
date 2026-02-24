@@ -4,19 +4,18 @@
   users.users.tommyhe = {
     name = "tommyhe";
     home = "/Users/tommyhe";
-    # shell = "zsh";
+    shell = "/bin/zsh";
   };
 
   nix = {
     package = pkgs.nixVersions.latest;
-    # configureBuildUsers = true;
     settings.experimental-features = "nix-command flakes";
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";
     };
     optimise = {
-        automatic = true;
+      automatic = true;
     };
   };
 
@@ -42,6 +41,12 @@
       brewfile = true;
       lockfiles = true;
       autoUpdate = false;
+    };
+
+    onActivation = {
+      autoUpdate = false;
+      upgrade = false;
+      cleanup = "zap";
     };
 
     brews = [
@@ -74,15 +79,13 @@
       "1password"
 
       "mullvadvpn"
-      "adobe-acrobat-reader"
+
       "microsoft-auto-update"
       # "microsoft-word"
       "microsoft-excel"
       "onedrive"
       # "microsoft-powerpoint"
       # "libreoffice" fails for some reason
-
-      "minecraft"
 
       "rancher"
 
