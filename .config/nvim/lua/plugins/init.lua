@@ -23,11 +23,10 @@ return {
 			},
 		},
 	},
-	{ "mbbill/undotree" }, -- undotree
 
 	--navigation
 	{
-		"ggandor/leap.nvim", -- easier navigation
+		url = "https://codeberg.org/andyg/leap.nvim", -- easier navigation
 		config = function()
 			local leap = require("leap")
 			leap.add_default_mappings()
@@ -83,12 +82,6 @@ return {
 	},
 
 	{
-		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("supermaven-nvim").setup({})
-		end,
-	},
-	{
 		"NeogitOrg/neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
@@ -106,14 +99,6 @@ return {
 		config = function()
 			require("gitsigns").setup()
 		end,
-	},
-	{
-		"olimorris/codecompanion.nvim",
-		opts = {},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
 	},
 	{
 		"jpalardy/vim-slime",

@@ -25,9 +25,7 @@ let homeDirectory = "/Users/tommyhe"; in
     };
 
     shellAliases = {
-      l = "eza --git --icons --long";
       la = "eza --git --icons --long --all";
-      ll = "eza --git --icons";
       ltree = "eza --tree --git --icons";
       g = "git";
       dots = "git --git-dir=/Users/tommyhe/.dotfiles/ --work-tree=/Users/tommyhe $argv";
@@ -360,91 +358,92 @@ let homeDirectory = "/Users/tommyhe"; in
     ];
   };
 
+  # TODO: not working? maybe overruled by nvim?
   programs.vim = {
     enable = true;
 
     extraConfig = ''
-      " Set cursor to block in normal mode
-      let &t_EI = "\e[2 q"
-      " Set cursor to line in insert mode
-      let &t_SI = "\e[6 q"
+" Set cursor to block in normal mode
+let &t_EI = "\e[2 q"
+" Set cursor to line in insert mode
+let &t_SI = "\e[6 q"
 
-      colorscheme evening
+colorscheme habamax
 
-      set nobackup
-      set cmdheight=1
-      set completeopt=menuone,noselect " for cmp
-      set conceallevel=2 " conceal for json/md/tex files
-      set fileencoding=utf-8
-      set hlsearch " highlight all matches on previous search pattern
-      set noignorecase
-      set mouse=a " allow the mouse to be used in vim
-      set pumheight=10 " pop up menu height
-      set showtabline=2 " always show tabs
-      set smartcase
-      set autoindent
-      set smartindent
-      set noswapfile
-      set termguicolors
-      set timeoutlen=1000 " time to wait for a mapped sequence to complete (in milliseconds)
-      set ttimeoutlen=5
-      set undofile " enable persistent undo
-      set updatetime=300 " faster completion (4000ms default)
-      set nowritebackup " if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-      set expandtab " convert tabs to spaces
-      set shiftwidth=4 " the number of spaces inserted for each indentation
-      set tabstop=4 " insert 4 spaces for a tab
-      set cursorline " highlight the current line
-      set number " set numbered lines
-      set relativenumber " set relative numbered lines
-      set numberwidth=4 " set number column width to 2 {default 4}
-      set signcolumn=yes " always show the sign column, otherwise it would shift the text each time
-      set wrap " display lines as one long line
-      set scrolloff=3
-      set sidescrolloff=3
+set nobackup
+set cmdheight=1
+set completeopt=menuone,noselect " for cmp
+set conceallevel=2 " conceal for json/md/tex files
+set fileencoding=utf-8
+set hlsearch " highlight all matches on previous search pattern
+set noignorecase
+set mouse=a " allow the mouse to be used in vim
+set pumheight=10 " pop up menu height
+set showtabline=2 " always show tabs
+set smartcase
+set autoindent
+set smartindent
+set noswapfile
+set termguicolors
+set timeoutlen=1000 " time to wait for a mapped sequence to complete (in milliseconds)
+set ttimeoutlen=5
+set undofile " enable persistent undo
+set updatetime=300 " faster completion (4000ms default)
+set nowritebackup " if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+set expandtab " convert tabs to spaces
+set shiftwidth=4 " the number of spaces inserted for each indentation
+set tabstop=4 " insert 4 spaces for a tab
+set cursorline " highlight the current line
+set number " set numbered lines
+set relativenumber " set relative numbered lines
+set numberwidth=4 " set number column width to 2 {default 4}
+set signcolumn=yes " always show the sign column, otherwise it would shift the text each time
+set wrap " display lines as one long line
+set scrolloff=3
+set sidescrolloff=3
 
-      set shortmess+=c
+set shortmess+=c
 
-      set title
-      let &t_ut='''
+set title
+let &t_ut='''
 
-      au BufNewFile,BufRead *.wgsl setfiletype wgsl
+au BufNewFile,BufRead *.wgsl setfiletype wgsl
 
-      " window navigation
-      nnoremap <silent> <C-h> <C-w>h
-      nnoremap <silent> <C-j> <C-w>j
-      nnoremap <silent> <C-k> <C-w>k
-      nnoremap <silent> <C-l> <C-w>l
+" window navigation
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
 
-      "resize
-      nnoremap <silent> <C-Up> :resize +2<CR>
-      nnoremap <silent> <C-Down> :resize -2<CR>
-      nnoremap <silent> <C-Left> :vertical resize -2<CR>
-      nnoremap <silent> <C-Right> :vertical resize +2<CR>
-      inoremap <silent> <C-Up> <C-o>:resize +2<CR>
-      inoremap <silent> <C-Down> <C-o>:resize -2<CR>
-      inoremap <silent> <C-Left> <C-o>:vertical resize -2<CR>
-      inoremap <silent> <C-Right> <C-o>:vertical resize +2<CR>
+"resize
+nnoremap <silent> <C-Up> :resize +2<CR>
+nnoremap <silent> <C-Down> :resize -2<CR>
+nnoremap <silent> <C-Left> :vertical resize -2<CR>
+nnoremap <silent> <C-Right> :vertical resize +2<CR>
+inoremap <silent> <C-Up> <C-o>:resize +2<CR>
+inoremap <silent> <C-Down> <C-o>:resize -2<CR>
+inoremap <silent> <C-Left> <C-o>:vertical resize -2<CR>
+inoremap <silent> <C-Right> <C-o>:vertical resize +2<CR>
 
-      nnoremap <silent> <C-d> <C-d>zz
-      nnoremap <silent> <C-u> <C-u>zz
-      nnoremap <silent> n nzzzv
-      nnoremap <silent> N Nzzzv
+nnoremap <silent> <C-d> <C-d>zz
+nnoremap <silent> <C-u> <C-u>zz
+nnoremap <silent> n nzzzv
+nnoremap <silent> N Nzzzv
 
-      " stop ctrl c from entering normal mode
-      inoremap <C-c> <NOP>
+" stop ctrl c from entering normal mode
+inoremap <C-c> <NOP>
 
-      " noh
-      nnoremap gh :noh<CR>
+" noh
+nnoremap gh :noh<CR>
 
-      " CP
-      nnoremap <leader>i :vsp %:r.in<CR><C-w>r<CR>
-      nnoremap <leader>j :!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>
+" CP
+nnoremap <leader>i :vsp %:r.in<CR><C-w>r<CR>
+nnoremap <leader>j :!g++-12 --std=c++17 %:r.cpp && ./a.out < %:r.in<CR>
 
-      command! WQ wq
-      command! Wq wq
-      command! W w
-      command! Q q
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
     '';
   };
 
